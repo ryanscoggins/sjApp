@@ -1,0 +1,1 @@
+eslint --fix app/*.jsx
