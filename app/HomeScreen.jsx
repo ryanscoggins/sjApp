@@ -12,11 +12,23 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
-	text: {
-		fontSize: '25',
+    titleText: {
+        fontSize: '25',
+    },
+	rowText: {
+		fontSize: '20',
 	},
 	box: {
-		fontSize: '25',
+		fontSize: '20',
+		borderWidth: 1,
+		padding: 10,
+		margin: 12,
+	},
+	row: {
+		display: 'flex',
+		flexDirection: 'row',
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 });
 
@@ -28,11 +40,16 @@ export default function App() {
 	//   };
 	return (
 		<View style={styles.container}>
-			<Text style={styles.text}>Here is the beginning of SJ's app!</Text>
-			<TextInput
-				style={styles.box}
-				value="1"
-			/>
+			<Text style={styles.titleText}>Here is the beginning of SJ's app!</Text>
+			<View style={styles.row}>
+				<Text style={styles.rowText}>
+					Number of hours needed:
+				</Text>
+				<TextInput
+					style={styles.box}
+					value="1"
+				/>
+			</View>
 			{/* <DateTimePicker
 				value={initialDate}
 				mode="time"
