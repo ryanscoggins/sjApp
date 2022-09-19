@@ -34,7 +34,6 @@ const styles = StyleSheet.create({
 });
 
 export default function App() {
-	// const initialDate = new Date(new Date().setHours(0, 0, 0, 0));
 	// const [mode, setMode] = useState('date');
 	// const onChange = (event, selectedDate) => {
 	//     console.log(selectedDate);
@@ -44,6 +43,7 @@ export default function App() {
 	const [hoursWorked, updateHoursWorked] = useState('0');
 	const [lunchHours, updateLunchHours] = useState('30');
 	const [lunchBox, updateLunchBox] = useState(false);
+	const initialDate = new Date(new Date().setHours(0, 0, 0, 0));
 
 	return (
 		<View style={styles.container}>
@@ -83,12 +83,20 @@ export default function App() {
 					onChange={updateLunchHours}
 				/>
 			</View>
-			{/* <DateTimePicker
-				value={initialDate}
-				mode="time"
-				onChange={onChange}
-			/> */}
-			{/* <StatusBar style="auto" /> */}
+			<View style={styles.row}>
+				<Text style={styles.rowText}>
+					Start time:
+				</Text>
+				<DateTimePicker
+					mode="time"
+					value={new Date()}
+					onChange={console.log({ initialDate })}
+					display="default"
+					style={{
+						width: 100,
+					}}
+				/>
+			</View>
 		</View>
 	);
 }
