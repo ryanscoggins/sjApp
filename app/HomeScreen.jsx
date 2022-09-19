@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
 	StyleSheet, Text, View, TextInput,
 } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Checkbox from 'expo-checkbox';
 
@@ -34,16 +33,10 @@ const styles = StyleSheet.create({
 });
 
 export default function App() {
-	// const [mode, setMode] = useState('date');
-	// const onChange = (event, selectedDate) => {
-	//     console.log(selectedDate);
-	//   };
-	const hours = [1, 2, 3, 4];
 	const [hoursNeeded, updateHoursNeeded] = useState('40');
 	const [hoursWorked, updateHoursWorked] = useState('0');
 	const [lunchHours, updateLunchHours] = useState('30');
 	const [lunchBox, updateLunchBox] = useState(false);
-	// const initialDate = new Date(new Date().setHours(0, 0, 0, 0));
 	const [dayStart, updateDayStart] = useState(new Date(new Date().setHours(8, 0, 0, 0)));
 
 	return (
