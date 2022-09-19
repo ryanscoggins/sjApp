@@ -43,7 +43,8 @@ export default function App() {
 	const [hoursWorked, updateHoursWorked] = useState('0');
 	const [lunchHours, updateLunchHours] = useState('30');
 	const [lunchBox, updateLunchBox] = useState(false);
-	const initialDate = new Date(new Date().setHours(0, 0, 0, 0));
+	// const initialDate = new Date(new Date().setHours(0, 0, 0, 0));
+	const [dayStart, updateDayStart] = useState(new Date(new Date().setHours(8, 0, 0, 0)));
 
 	return (
 		<View style={styles.container}>
@@ -89,8 +90,8 @@ export default function App() {
 				</Text>
 				<DateTimePicker
 					mode="time"
-					value={new Date()}
-					onChange={console.log({ initialDate })}
+					value={dayStart}
+					onChange={(date) => updateDayStart}
 					display="default"
 					style={{
 						width: 100,
