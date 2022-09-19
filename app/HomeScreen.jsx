@@ -4,6 +4,7 @@ import {
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import Checkbox from 'expo-checkbox';
 
 const styles = StyleSheet.create({
 	container: {
@@ -41,6 +42,7 @@ export default function App() {
 	const hours = [1, 2, 3, 4];
 	const [hoursNeeded, updateHoursNeeded] = useState('40');
 	const [hoursWorked, updateHoursWorked] = useState('0');
+	const [lunchBox, updateLunchBox] = useState(false);
 
 	return (
 		<View style={styles.container}>
@@ -65,7 +67,20 @@ export default function App() {
 					onChange={updateHoursWorked}
 				/>
 			</View>
-
+			<View style={styles.row}>
+				<Text style={styles.rowText}>
+					Taking Lunch?:
+				</Text>
+				<Checkbox
+					value={lunchBox}
+					onValueChange={updateLunchBox}
+				/>
+				<TextInput
+					style={styles.box}
+					value={hoursWorked}
+					onChange={updateHoursWorked}
+				/>
+			</View>
 			{/* <DateTimePicker
 				value={initialDate}
 				mode="time"
