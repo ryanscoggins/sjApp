@@ -42,6 +42,7 @@ export default function App() {
 	const hours = [1, 2, 3, 4];
 	const [hoursNeeded, updateHoursNeeded] = useState('40');
 	const [hoursWorked, updateHoursWorked] = useState('0');
+	const [lunchHours, updateLunchHours] = useState('30');
 	const [lunchBox, updateLunchBox] = useState(false);
 
 	return (
@@ -72,13 +73,14 @@ export default function App() {
 					Taking Lunch?:
 				</Text>
 				<Checkbox
+					style={{ padding: 10, margin: 12 }}
 					value={lunchBox}
 					onValueChange={updateLunchBox}
 				/>
 				<TextInput
 					style={styles.box}
-					value={hoursWorked}
-					onChange={updateHoursWorked}
+					value={lunchHours}
+					onChange={updateLunchHours}
 				/>
 			</View>
 			{/* <DateTimePicker
