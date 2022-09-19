@@ -12,9 +12,9 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
-    titleText: {
-        fontSize: '25',
-    },
+	titleText: {
+		fontSize: '25',
+	},
 	rowText: {
 		fontSize: '20',
 	},
@@ -38,6 +38,10 @@ export default function App() {
 	// const onChange = (event, selectedDate) => {
 	//     console.log(selectedDate);
 	//   };
+	const hours = [1, 2, 3, 4];
+	const [hoursNeeded, updateHoursNeeded] = useState('40');
+	const [hoursWorked, updateHoursWorked] = useState('0');
+
 	return (
 		<View style={styles.container}>
 			<Text style={styles.titleText}>Here is the beginning of SJ's app!</Text>
@@ -47,15 +51,27 @@ export default function App() {
 				</Text>
 				<TextInput
 					style={styles.box}
-					value="1"
+					value={hoursNeeded}
+					onChange={updateHoursNeeded}
 				/>
 			</View>
+			<View style={styles.row}>
+				<Text style={styles.rowText}>
+					Number of hours worked:
+				</Text>
+				<TextInput
+					style={styles.box}
+					value={hoursWorked}
+					onChange={updateHoursWorked}
+				/>
+			</View>
+
 			{/* <DateTimePicker
 				value={initialDate}
 				mode="time"
 				onChange={onChange}
 			/> */}
-			<StatusBar style="auto" />
+			{/* <StatusBar style="auto" /> */}
 		</View>
 	);
 }
