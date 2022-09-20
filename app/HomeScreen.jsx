@@ -43,7 +43,7 @@ export default function App() {
 	function calculate() {
 		const hoursRemaining = hoursNeeded - hoursWorked;
 		if (lunchBox) {
-			updateFinalHours(hoursRemaining - lunchHours);
+			updateFinalHours(hoursRemaining + (lunchHours / 60));
 		} else updateFinalHours(hoursRemaining);
 		console.log(finalHours);
 	}
@@ -106,6 +106,7 @@ export default function App() {
 				onPress={calculate}
 				title="Calculate"
 			/>
+			{finalHours && <Text>{finalHours}</Text>}
 		</View>
 	);
 }
