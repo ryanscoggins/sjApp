@@ -4,6 +4,7 @@ import {
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Checkbox from 'expo-checkbox';
+import moment from 'moment';
 
 const styles = StyleSheet.create({
 	container: {
@@ -48,9 +49,10 @@ export default function App() {
 			minutes = lunchHours;
 		} else;
 		const hours = dayStart.getHours() + hoursRemaining;
-		console.log(hours);
-		updateDayEnd(new Date(new Date().setHours(hours, minutes, 0, 0)));
+		const time = (new Date(new Date().setHours(hours, minutes, 0, 0)));
+		updateDayEnd(moment(time).format('h:mm A'));
 		console.log(dayEnd);
+		console.log(time);
 	}
 
 	return (
@@ -111,7 +113,7 @@ export default function App() {
 				onPress={calculate}
 				title="Calculate"
 			/>
-			{/* {finalHours && <Text>{finalHours}</Text>} */}
+			<Text>{dayEnd}</Text>
 		</View>
 	);
 }
