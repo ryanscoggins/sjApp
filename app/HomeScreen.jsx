@@ -71,11 +71,13 @@ export default function App() {
 					value={lunchBox}
 					onValueChange={updateLunchBox}
 				/>
-				<TextInput
-					style={styles.box}
-					value={lunchHours}
-					onChange={updateLunchHours}
-				/>
+				{lunchBox && (
+					<TextInput
+						style={styles.box}
+						value={lunchHours}
+						onChange={updateLunchHours}
+					/>
+				) }
 			</View>
 			<View style={styles.row}>
 				<Text style={styles.rowText}>
