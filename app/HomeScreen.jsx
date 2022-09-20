@@ -45,6 +45,8 @@ export default function App() {
 		if (lunchBox) {
 			updateFinalHours(hoursRemaining + (lunchHours / 60));
 		} else updateFinalHours(hoursRemaining);
+		const time = dayStart.setHours(finalHours);
+		console.log(new Date(time));
 		console.log(finalHours);
 	}
 
