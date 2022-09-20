@@ -41,8 +41,11 @@ export default function App() {
 
 	function calculate() {
 		const hoursRemaining = hoursNeeded - hoursWorked;
-		// console.log(hoursWorked);
-		console.log(hoursRemaining);
+		let finalHours = null;
+		if (lunchBox) {
+			finalHours = hoursRemaining - lunchHours;
+		} else finalHours = hoursRemaining;
+		console.log(finalHours);
 	}
 
 	return (
