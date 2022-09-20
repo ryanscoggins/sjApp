@@ -34,20 +34,23 @@ const styles = StyleSheet.create({
 
 export default function App() {
 	const [hoursNeeded, updateHoursNeeded] = useState('40');
-	const [hoursWorked, updateHoursWorked] = useState('0');
+	const [hoursWorked, updateHoursWorked] = useState('32');
 	const [lunchHours, updateLunchHours] = useState('30');
 	const [lunchBox, updateLunchBox] = useState(false);
 	const [dayStart, updateDayStart] = useState(new Date(new Date().setHours(8, 0, 0, 0)));
-	const [finalHours, updateFinalHours] = useState(null);
+	const [dayEnd, updateDayEnd] = useState(new Date(new Date().setHours(16, 0, 0, 0)));
+	// const [finalHours, updateFinalHours] = useState(null);
 
 	function calculate() {
 		const hoursRemaining = hoursNeeded - hoursWorked;
+		let minutes = 0;
 		if (lunchBox) {
-			updateFinalHours(hoursRemaining + (lunchHours / 60));
-		} else updateFinalHours(hoursRemaining);
-		const time = dayStart.setHours(finalHours);
-		console.log(new Date(time));
-		console.log(finalHours);
+			minutes = lunchHours;
+		} else;
+		const hours = dayStart.getHours() + hoursRemaining;
+		console.log(hours);
+		updateDayEnd(new Date(new Date().setHours(hours, minutes, 0, 0)));
+		console.log(dayEnd);
 	}
 
 	return (
@@ -108,7 +111,7 @@ export default function App() {
 				onPress={calculate}
 				title="Calculate"
 			/>
-			{finalHours && <Text>{finalHours}</Text>}
+			{/* {finalHours && <Text>{finalHours}</Text>} */}
 		</View>
 	);
 }
