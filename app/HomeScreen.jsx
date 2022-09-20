@@ -38,13 +38,13 @@ export default function App() {
 	const [lunchHours, updateLunchHours] = useState('30');
 	const [lunchBox, updateLunchBox] = useState(false);
 	const [dayStart, updateDayStart] = useState(new Date(new Date().setHours(8, 0, 0, 0)));
+	const [finalHours, updateFinalHours] = useState(null);
 
 	function calculate() {
 		const hoursRemaining = hoursNeeded - hoursWorked;
-		let finalHours = null;
 		if (lunchBox) {
-			finalHours = hoursRemaining - lunchHours;
-		} else finalHours = hoursRemaining;
+			updateFinalHours(hoursRemaining - lunchHours);
+		} else updateFinalHours(hoursRemaining);
 		console.log(finalHours);
 	}
 
