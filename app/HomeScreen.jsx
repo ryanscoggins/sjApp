@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-	StyleSheet, Text, View, TextInput,
+	StyleSheet, Text, View, TextInput, Button,
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Checkbox from 'expo-checkbox';
@@ -39,6 +39,12 @@ export default function App() {
 	const [lunchBox, updateLunchBox] = useState(false);
 	const [dayStart, updateDayStart] = useState(new Date(new Date().setHours(8, 0, 0, 0)));
 
+	function calculate() {
+		const hoursRemaining = (hoursNeeded);
+		// console.log(hoursWorked);
+		console.log(hoursRemaining);
+	}
+
 	return (
 		<View style={styles.container}>
 			<Text style={styles.titleText}>Here is the beginning of SJ's app!</Text>
@@ -49,7 +55,7 @@ export default function App() {
 				<TextInput
 					style={styles.box}
 					value={hoursNeeded}
-					onChange={updateHoursNeeded}
+					onChangeText={(e) => console.log(e)}
 				/>
 			</View>
 			<View style={styles.row}>
@@ -59,7 +65,7 @@ export default function App() {
 				<TextInput
 					style={styles.box}
 					value={hoursWorked}
-					onChange={updateHoursWorked}
+					onChangeText={updateHoursWorked}
 				/>
 			</View>
 			<View style={styles.row}>
@@ -75,7 +81,7 @@ export default function App() {
 					<TextInput
 						style={styles.box}
 						value={lunchHours}
-						onChange={updateLunchHours}
+						onChangeText={updateLunchHours}
 					/>
 				) }
 			</View>
@@ -91,6 +97,10 @@ export default function App() {
 					style={{
 						width: 100,
 					}}
+				/>
+				<Button
+					onPress={calculate}
+					title="Calculate"
 				/>
 			</View>
 		</View>
