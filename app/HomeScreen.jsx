@@ -40,7 +40,7 @@ export default function App() {
 	const [dayStart, updateDayStart] = useState(new Date(new Date().setHours(8, 0, 0, 0)));
 
 	function calculate() {
-		const hoursRemaining = (hoursNeeded);
+		const hoursRemaining = hoursNeeded - hoursWorked;
 		// console.log(hoursWorked);
 		console.log(hoursRemaining);
 	}
@@ -55,7 +55,7 @@ export default function App() {
 				<TextInput
 					style={styles.box}
 					value={hoursNeeded}
-					onChangeText={(e) => console.log(e)}
+					onChangeText={updateHoursNeeded}
 				/>
 			</View>
 			<View style={styles.row}>
@@ -98,11 +98,11 @@ export default function App() {
 						width: 100,
 					}}
 				/>
-				<Button
-					onPress={calculate}
-					title="Calculate"
-				/>
 			</View>
+			<Button
+				onPress={calculate}
+				title="Calculate"
+			/>
 		</View>
 	);
 }
