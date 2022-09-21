@@ -21,7 +21,8 @@ const styles = StyleSheet.create({
 		flex: 2,
 	},
 	titleText: {
-		fontSize: '25',
+		paddingTop: 45,
+		fontSize: '45',
 	},
 	rowText: {
 		fontSize: '20',
@@ -129,15 +130,17 @@ export default function App() {
 					onPress={calculate}
 					title="Calculate"
 				/>
-				{showBanner && (
-					<Text style={styles.rowText}>
-						You finish at
-						{' '}
-						{dayEnd}
-						{' '}
-						today!
-					</Text>
-				)}
+				<View style={styles.row}>
+					{showBanner && (
+						<Text style={styles.rowText}>
+							You finish at
+							{' '}
+							{dayEnd}
+							{' '}
+							today!
+						</Text>
+					)}
+				</View>
 			</View>
 		</View>
 	);
