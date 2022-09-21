@@ -12,6 +12,13 @@ const styles = StyleSheet.create({
 		backgroundColor: '#d9cff2',
 		alignItems: 'center',
 		justifyContent: 'center',
+		paddingTop: 60,
+	},
+	titleContainer: {
+		flex: 1,
+	},
+	contentContainer: {
+		flex: 2,
 	},
 	titleText: {
 		fontSize: '25',
@@ -63,71 +70,75 @@ export default function App() {
 
 	return (
 		<View style={styles.container}>
-			<Text style={styles.titleText}>Happy Friday, SJ!</Text>
-			<View style={styles.row}>
-				<Text style={styles.rowText}>
-					Number of hours needed:
-				</Text>
-				<TextInput
-					style={styles.box}
-					value={hoursNeeded}
-					onChangeText={updateHoursNeeded}
-				/>
+			<View style={styles.titleContainer}>
+				<Text style={styles.titleText}>Happy Friday, SJ!</Text>
 			</View>
-			<View style={styles.row}>
-				<Text style={styles.rowText}>
-					Number of hours worked:
-				</Text>
-				<TextInput
-					style={styles.box}
-					value={hoursWorked}
-					onChangeText={updateHoursWorked}
-				/>
-			</View>
-			<View style={styles.row}>
-				<Text style={styles.rowText}>
-					Taking Lunch?:
-				</Text>
-				<Checkbox
-					style={{ padding: 10, margin: 12 }}
-					value={lunchBox}
-					onValueChange={updateLunchBox}
-				/>
-				{lunchBox && (
+			<View style={styles.contentContainer}>
+				<View style={styles.row}>
+					<Text style={styles.rowText}>
+						Number of hours needed:
+					</Text>
 					<TextInput
 						style={styles.box}
-						value={lunchHours}
-						onChangeText={updateLunchHours}
+						value={hoursNeeded}
+						onChangeText={updateHoursNeeded}
 					/>
-				) }
-			</View>
-			<View style={styles.row}>
-				<Text style={styles.rowText}>
-					Start time:
-				</Text>
-				<DateTimePicker
-					mode="time"
-					value={dayStart}
-					onChange={(e, date) => updateStart(e, date)}
-					display="default"
-					style={{
-						width: 100,
-					}}
+				</View>
+				<View style={styles.row}>
+					<Text style={styles.rowText}>
+						Number of hours worked:
+					</Text>
+					<TextInput
+						style={styles.box}
+						value={hoursWorked}
+						onChangeText={updateHoursWorked}
+					/>
+				</View>
+				<View style={styles.row}>
+					<Text style={styles.rowText}>
+						Taking Lunch?:
+					</Text>
+					<Checkbox
+						style={{ padding: 10, margin: 12 }}
+						value={lunchBox}
+						onValueChange={updateLunchBox}
+					/>
+					{lunchBox && (
+						<TextInput
+							style={styles.box}
+							value={lunchHours}
+							onChangeText={updateLunchHours}
+						/>
+					) }
+				</View>
+				<View style={styles.row}>
+					<Text style={styles.rowText}>
+						Start time:
+					</Text>
+					<DateTimePicker
+						mode="time"
+						value={dayStart}
+						onChange={(e, date) => updateStart(e, date)}
+						display="default"
+						style={{
+							width: 100,
+						}}
+					/>
+				</View>
+				<Button
+					onPress={calculate}
+					title="Calculate"
 				/>
+				{showBanner && (
+					<Text style={styles.rowText}>
+						You finish at
+						{' '}
+						{dayEnd}
+						{' '}
+						today!
+					</Text>
+				)}
 			</View>
-			<Button
-				onPress={calculate}
-				title="Calculate"
-			/>
-			{showBanner && (
-				<Text style={styles.rowText}>
-					You finish at
-					{' '}
-					{dayEnd}
-					{' '}
-					today!
-				</Text>
-			)}
 		</View>
 	);
 }
