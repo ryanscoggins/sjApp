@@ -1,7 +1,8 @@
 {
   "expo": {
-    "name": "sjEverydayApp",
-    "slug": "sjEverydayApp",
+    "name": "SJ App",
+    "slug": "sj-app",
+    "owner": "ryanpersonal",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
