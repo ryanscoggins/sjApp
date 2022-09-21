@@ -111,7 +111,13 @@ export default function App() {
 				onPress={calculate}
 				title="Calculate"
 			/>
-			<Text>{dayEnd}</Text>
+			<Text style={styles.rowText}>
+				You finish at
+				{' '}
+				{dayEnd}
+				{' '}
+				today!
+			</Text>
 		</View>
 	);
 }
