@@ -9,7 +9,7 @@ import moment from 'moment';
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#fff',
+		backgroundColor: '#d9cff2',
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
@@ -63,7 +63,7 @@ export default function App() {
 
 	return (
 		<View style={styles.container}>
-			<Text style={styles.titleText}>Happy Friday!</Text>
+			<Text style={styles.titleText}>Happy Friday, SJ!</Text>
 			<View style={styles.row}>
 				<Text style={styles.rowText}>
 					Number of hours needed:
