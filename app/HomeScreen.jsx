@@ -40,6 +40,7 @@ export default function App() {
 	const [lunchBox, updateLunchBox] = useState(false);
 	const [dayStart, updateDayStart] = useState(new Date(new Date().setHours(8, 0, 0, 0)));
 	const [dayEnd, updateDayEnd] = useState('5:00 PM');
+	const [showBanner, updateBanner] = useState(false);
 
 	function updateStart(e, date) {
 		const hours = date.getHours();
@@ -57,6 +58,7 @@ export default function App() {
 		const totalMinutes = (hours * 60) + dayStart.getMinutes() + parseInt(minutes);
 		const time = (new Date(new Date().setHours(0, totalMinutes)));
 		updateDayEnd(moment(time).format('h:mm A'));
+		updateBanner(true);
 	}
 
 	return (
@@ -117,13 +119,15 @@ export default function App() {
 				onPress={calculate}
 				title="Calculate"
 			/>
-			<Text style={styles.rowText}>
-				You finish at
-				{' '}
-				{dayEnd}
-				{' '}
-				today!
-			</Text>
+			{showBanner && (
+				<Text style={styles.rowText}>
+					You finish at
+					{' '}
+					{dayEnd}
+					{' '}
+					today!
+				</Text>
+			)}
 		</View>
 	);
 }
