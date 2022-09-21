@@ -48,9 +48,9 @@ export default function App() {
 			minutes = lunchHours;
 		} else;
 		const hours = dayStart.getHours() + hoursRemaining;
-		const time = (new Date(new Date().setHours(hours, minutes, 0, 0)));
+		const totalMinutes = (hours * 60) + parseInt(minutes);
+		const time = (new Date(new Date().setHours(0, totalMinutes)));
 		updateDayEnd(moment(time).format('h:mm A'));
-		console.log(dayEnd);
 	}
 
 	return (
