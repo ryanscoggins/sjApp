@@ -41,6 +41,12 @@ export default function App() {
 	const [dayStart, updateDayStart] = useState(new Date(new Date().setHours(8, 0, 0, 0)));
 	const [dayEnd, updateDayEnd] = useState('5:00 PM');
 
+	function updateStart(e, date) {
+		const hours = date.getHours();
+		const minutes = date.getMinutes();
+		updateDayStart(new Date(new Date().setHours(hours, minutes)));
+	}
+
 	function calculate() {
 		const hoursRemaining = hoursNeeded - hoursWorked;
 		let minutes = 0;
@@ -48,7 +54,7 @@ export default function App() {
 			minutes = lunchHours;
 		} else;
 		const hours = dayStart.getHours() + hoursRemaining;
-		const totalMinutes = (hours * 60) + parseInt(minutes);
+		const totalMinutes = (hours * 60) + dayStart.getMinutes() + parseInt(minutes);
 		const time = (new Date(new Date().setHours(0, totalMinutes)));
 		updateDayEnd(moment(time).format('h:mm A'));
 	}
@@ -100,7 +106,7 @@ export default function App() {
 				<DateTimePicker
 					mode="time"
 					value={dayStart}
-					onChange={(date) => updateDayStart(date)}
+					onChange={(e, date) => updateStart(e, date)}
 					display="default"
 					style={{
 						width: 100,
