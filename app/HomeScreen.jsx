@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	contentContainer: {
-		flex: 2,
+		flex: 3,
 	},
 	titleText: {
 		paddingTop: 45,
