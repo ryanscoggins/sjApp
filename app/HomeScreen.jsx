@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
 	box: {
 		fontSize: '20',
 		borderWidth: 1,
+		borderRadius: 6,
 		padding: 10,
 		margin: 12,
 	},
@@ -100,7 +101,9 @@ export default function App() {
 						Taking Lunch?:
 					</Text>
 					<Checkbox
-						style={{ padding: 10, margin: 12 }}
+						style={{
+							padding: 10, margin: 12, borderRadius: 6, borderWidth: 1,
+						}}
 						value={lunchBox}
 						onValueChange={updateLunchBox}
 					/>
