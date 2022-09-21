@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import {
-	StyleSheet, Text, View, TextInput, Button,
+	StyleSheet, Text, View, TextInput, Button, Image,
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Checkbox from 'expo-checkbox';
 import moment from 'moment';
+import OllieImage from '../assets/ollie.png';
 
 const styles = StyleSheet.create({
 	container: {
@@ -50,6 +51,8 @@ export default function App() {
 	const [dayStart, updateDayStart] = useState(new Date(new Date().setHours(8, 0, 0, 0)));
 	const [dayEnd, updateDayEnd] = useState('5:00 PM');
 	const [showBanner, updateBanner] = useState(false);
+
+	const Ollie = Image.resolveAssetSource(OllieImage).uri;
 
 	function updateStart(e, date) {
 		const hours = date.getHours();
@@ -135,13 +138,22 @@ export default function App() {
 				/>
 				<View style={styles.row}>
 					{showBanner && (
-						<Text style={styles.rowText}>
-							You finish at
-							{' '}
-							{dayEnd}
-							{' '}
-							today!
-						</Text>
+						<View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+							<Text style={styles.rowText}>
+								You finish at
+								{' '}
+								{dayEnd}
+								{' '}
+								today!
+							</Text>
+							<Image
+								source={{ uri: Ollie }}
+								style={{ margin: 10, width: 150, height: 150 }}
+							/>
+							<Text style={styles.rowText}>
+								Ollie is patiently waiting on you!
+							</Text>
+						</View>
 					)}
 				</View>
 			</View>
