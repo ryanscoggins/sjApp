@@ -61,7 +61,7 @@ export default function App() {
 
 	return (
 		<View style={styles.container}>
-			<Text style={styles.titleText}>Here is the beginning of SJ's app!</Text>
+			<Text style={styles.titleText}>Happy Friday!</Text>
 			<View style={styles.row}>
 				<Text style={styles.rowText}>
 					Number of hours needed:
