@@ -39,7 +39,7 @@ export default function App() {
 	const [lunchHours, updateLunchHours] = useState('30');
 	const [lunchBox, updateLunchBox] = useState(false);
 	const [dayStart, updateDayStart] = useState(new Date(new Date().setHours(8, 0, 0, 0)));
-	const [dayEnd, updateDayEnd] = useState(new Date(new Date().setHours(16, 0, 0, 0)));
+	const [dayEnd, updateDayEnd] = useState('5:00 PM');
 
 	function calculate() {
 		const hoursRemaining = hoursNeeded - hoursWorked;
