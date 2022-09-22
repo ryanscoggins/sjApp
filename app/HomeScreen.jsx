@@ -14,13 +14,13 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 		paddingTop: 50,
-		padding: 5,
+		padding: 20,
 	},
 	titleContainer: {
 		flex: 1,
 	},
 	contentContainer: {
-		flex: 3,
+		flex: 4,
 	},
 	titleText: {
 		paddingTop: 45,
