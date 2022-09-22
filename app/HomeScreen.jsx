@@ -66,6 +66,9 @@ export default function App() {
 	function calculate() {
 		updateHoursRemaining(hoursNeeded - hoursWorked);
 		let minutes = 0;
+		if (hoursRemaining >= 6) {
+			updateLunchBox(true);
+		} else;
 		if (lunchBox) {
 			minutes = lunchHours;
 		} else;
