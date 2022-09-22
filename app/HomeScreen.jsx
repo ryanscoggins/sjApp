@@ -50,7 +50,7 @@ export default function App() {
 	const [hoursRemaining, updateHoursRemaining] = useState('8');
 	const [hoursSum, updateHoursSum] = useState('8');
 	const [lunchHours, updateLunchHours] = useState('30');
-	const [lunchBox, updateLunchBox] = useState(false);
+	const [lunchBox, updateLunchBox] = useState(true);
 	const [dayStart, updateDayStart] = useState(new Date(new Date().setHours(8, 0, 0, 0)));
 	const [dayEnd, updateDayEnd] = useState('5:00 PM');
 	const [showBanner, updateBanner] = useState(false);
@@ -65,12 +65,12 @@ export default function App() {
 
 	function calculate() {
 		updateHoursRemaining(Math.round(((hoursNeeded - hoursWorked) * 100)) / 100);
-		console.log(hoursRemaining);
 		let minutes = 0;
-		if (hoursRemaining >= 6 && lunchBox === false) {
+		if (hoursRemaining < 6 && lunchBox === true) {
+			updateLunchBox(false);
+		} else if (hoursRemaining >= 6 && lunchBox === false) {
 			updateLunchBox(true);
-			minutes = lunchHours;
-		} else;
+		}
 		if (lunchBox) {
 			minutes = lunchHours;
 		} else;
@@ -95,7 +95,7 @@ export default function App() {
 					<TextInput
 						style={styles.box}
 						value={hoursNeeded}
-						onChangeText={updateHoursNeeded}
+						onChangeText={(text) => check(text)}
 					/>
 				</View>
 				<View style={styles.row}>
