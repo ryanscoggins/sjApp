@@ -151,7 +151,9 @@ export default function App() {
 								{' '}
 								{hoursSum}
 								{' '}
-								hours today to reach
+								hours
+								{lunchBox ? ' (including lunch) ' : ' '}
+								today to reach
 								{' '}
 								{hoursNeeded}
 								{' '}
