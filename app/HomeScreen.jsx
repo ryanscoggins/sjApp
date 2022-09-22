@@ -47,6 +47,7 @@ export default function App() {
 	const [hoursNeeded, updateHoursNeeded] = useState('40');
 	const [hoursWorked, updateHoursWorked] = useState('32');
 	const [hoursRemaining, updateHoursRemaining] = useState('8');
+	const [hoursSum, updateHoursSum] = useState('8');
 	const [lunchHours, updateLunchHours] = useState('30');
 	const [lunchBox, updateLunchBox] = useState(false);
 	const [dayStart, updateDayStart] = useState(new Date(new Date().setHours(8, 0, 0, 0)));
@@ -70,6 +71,7 @@ export default function App() {
 		const hours = dayStart.getHours() + hoursRemaining;
 		const totalMinutes = (hours * 60) + dayStart.getMinutes() + parseInt(minutes);
 		const time = (new Date(new Date().setHours(0, totalMinutes)));
+		updateHoursSum((hoursRemaining * 60 + parseInt(minutes)) / 60);
 		updateDayEnd(moment(time).format('h:mm A'));
 		updateBanner(true);
 	}
@@ -145,7 +147,15 @@ export default function App() {
 								{' '}
 								{dayEnd}
 								{' '}
-								today!
+								today! You will need to work
+								{' '}
+								{hoursSum}
+								{' '}
+								hours today to reach
+								{' '}
+								{hoursNeeded}
+								{' '}
+								hours total.
 							</Text>
 							<Image
 								source={{ uri: Ollie }}
