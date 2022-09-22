@@ -64,7 +64,8 @@ export default function App() {
 	}
 
 	function calculate() {
-		updateHoursRemaining(hoursNeeded - hoursWorked);
+		updateHoursRemaining(Math.round(((hoursNeeded - hoursWorked) * 100)) / 100);
+		console.log(hoursRemaining);
 		let minutes = 0;
 		if (hoursRemaining >= 6) {
 			updateLunchBox(true);
