@@ -13,7 +13,8 @@ const styles = StyleSheet.create({
 		backgroundColor: '#d9cff2',
 		alignItems: 'center',
 		justifyContent: 'center',
-		paddingTop: 60,
+		paddingTop: 50,
+		padding: 5,
 	},
 	titleContainer: {
 		flex: 1,
