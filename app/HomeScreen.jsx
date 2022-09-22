@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
 export default function App() {
 	const [hoursNeeded, updateHoursNeeded] = useState('40');
 	const [hoursWorked, updateHoursWorked] = useState('32');
+	const [hoursRemaining, updateHoursRemaining] = useState('8');
 	const [lunchHours, updateLunchHours] = useState('30');
 	const [lunchBox, updateLunchBox] = useState(false);
 	const [dayStart, updateDayStart] = useState(new Date(new Date().setHours(8, 0, 0, 0)));
@@ -61,7 +62,7 @@ export default function App() {
 	}
 
 	function calculate() {
-		const hoursRemaining = hoursNeeded - hoursWorked;
+		updateHoursRemaining(hoursNeeded - hoursWorked);
 		let minutes = 0;
 		if (lunchBox) {
 			minutes = lunchHours;
