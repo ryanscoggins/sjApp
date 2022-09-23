@@ -65,16 +65,16 @@ export default function App() {
 
 	function updateWorked(text) {
 		updateHoursWorked(text);
-		console.log(text);
+		updateHoursRemaining(Math.round(((hoursNeeded - text) * 100)) / 100);
 	}
-	
+
 	function calculate() {
-		updateHoursRemaining(Math.round(((hoursNeeded - hoursWorked) * 100)) / 100);
 		let minutes = 0;
 		if (hoursRemaining < 6 && lunchBox === true) {
 			updateLunchBox(false);
 		} else if (hoursRemaining >= 6 && lunchBox === false) {
 			updateLunchBox(true);
+			minutes = lunchHours;
 		}
 		if (lunchBox) {
 			minutes = lunchHours;
