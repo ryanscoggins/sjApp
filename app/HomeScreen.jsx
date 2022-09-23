@@ -63,6 +63,11 @@ export default function App() {
 		updateDayStart(new Date(new Date().setHours(hours, minutes)));
 	}
 
+	function updateWorked(text) {
+		updateHoursWorked(text);
+		console.log(text);
+	}
+	
 	function calculate() {
 		updateHoursRemaining(Math.round(((hoursNeeded - hoursWorked) * 100)) / 100);
 		let minutes = 0;
@@ -95,7 +100,7 @@ export default function App() {
 					<TextInput
 						style={styles.box}
 						value={hoursNeeded}
-						onChangeText={(text) => check(text)}
+						onChangeText={updateHoursNeeded}
 					/>
 				</View>
 				<View style={styles.row}>
@@ -105,7 +110,7 @@ export default function App() {
 					<TextInput
 						style={styles.box}
 						value={hoursWorked}
-						onChangeText={updateHoursWorked}
+						onChangeText={(text) => updateWorked(text)}
 					/>
 				</View>
 				<View style={styles.row}>
