@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
 export default function App() {
 	const [hoursNeeded, updateHoursNeeded] = useState('40');
 	const [hoursWorked, updateHoursWorked] = useState('32');
-	const [hoursRemaining, updateHoursRemaining] = useState('8'); // change back to 8
+	const [hoursRemaining, updateHoursRemaining] = useState('8');
 	const [hoursSum, updateHoursSum] = useState('8');
 	const [lunchHours, updateLunchHours] = useState('30');
 	const [lunchBox, updateLunchBox] = useState(true);
@@ -90,12 +90,15 @@ export default function App() {
 
 		const hour = time.getHours();
 		const quarter = (parseInt((totalMinutes + 7.5) / 15) * 15) % 60;
-		const roundedTime = (new Date(new Date().setHours(hour, quarter)));
-		let clockOutTime = roundedTime;
+		let clockOutTime = (new Date(new Date().setHours(hour, quarter)));
 
-		if (time > roundedTime) {
+		if (time > clockOutTime) {
 			clockOutTime = (new Date(new Date().setHours(hour, quarter + 8)));
-		} else clockOutTime = (new Date(new Date().setHours(hour, quarter - 7)));
+		} else {
+			clockOutTime = (new Date(new Date().setHours(hour, quarter - 7)));
+		}
+
+		const roundedTime = new Date(new Date().setHours(hour, (parseInt(((clockOutTime.getMinutes()) + 7.5) / 15) * 15) % 60));
 
 		updateRoundedRemaining(moment(roundedTime).format('h:mm A'));
 		updateClockOut(moment(clockOutTime).format('h:mm A'));
@@ -173,7 +176,7 @@ export default function App() {
 								{' '}
 								{hoursSum}
 							</Text>
-							<Text style={styles.rowText}>
+							{/* <Text style={styles.rowText}>
 								lunch needed?:
 								{' '}
 								{lunchBox ? 'Y' : 'N'}
@@ -182,7 +185,7 @@ export default function App() {
 								hours needed:
 								{' '}
 								{hoursNeeded}
-							</Text>
+							</Text> */}
 							<Text style={styles.rowText}>
 								exact time:
 								{' '}
