@@ -86,10 +86,13 @@ export default function App() {
 		updateHoursSum((hoursRemaining * 60 + parseInt(minutes)) / 60);
 		updateDayEnd(moment(time).format('h:mm A'));
 		updateBanner(true);
+
+		console.log(moment(time).format('h:mm A'));
+		const hour = time.getHours();
+		console.log(hour);
 		const quarter = (parseInt((totalMinutes + 7.5)/15) * 15) % 60;
-		const roundedTime = (new Date(new Date().setHours(hours, quarter)));
+		const roundedTime = (new Date(new Date().setHours(hour, quarter)));
 		updateRoundedRemaining(moment(roundedTime).format('h:mm A'));
-		console.log(roundedTime);
 	}
 
 	return (
