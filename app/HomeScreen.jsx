@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
 export default function App() {
 	const [hoursNeeded, updateHoursNeeded] = useState('40');
 	const [hoursWorked, updateHoursWorked] = useState('32');
-	const [hoursRemaining, updateHoursRemaining] = useState('7.7'); //change back to 8
+	const [hoursRemaining, updateHoursRemaining] = useState('8'); //change back to 8
 	const [hoursSum, updateHoursSum] = useState('8');
 	const [lunchHours, updateLunchHours] = useState('30');
 	const [lunchBox, updateLunchBox] = useState(true);
@@ -80,16 +80,18 @@ export default function App() {
 		if (lunchBox) {
 			minutes = lunchHours;
 		} else;
-		const hours = dayStart.getHours() + hoursRemaining;
+		const hours = parseFloat(dayStart.getHours()) + parseFloat(hoursRemaining);
 		const totalMinutes = (hours * 60) + dayStart.getMinutes() + parseInt(minutes);
 		const time = (new Date(new Date().setHours(0, totalMinutes)));
 		updateHoursSum((hoursRemaining * 60 + parseInt(minutes)) / 60);
 		updateDayEnd(moment(time).format('h:mm A'));
 		updateBanner(true);
 
-		console.log(moment(time).format('h:mm A'));
+		console.log(hours);
+		// console.log(time);
+
+		// console.log(moment(time).format('h:mm A'));
 		const hour = time.getHours();
-		console.log(hour);
 		const quarter = (parseInt((totalMinutes + 7.5)/15) * 15) % 60;
 		const roundedTime = (new Date(new Date().setHours(hour, quarter)));
 		updateRoundedRemaining(moment(roundedTime).format('h:mm A'));
