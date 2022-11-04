@@ -47,13 +47,14 @@ const styles = StyleSheet.create({
 export default function App() {
 	const [hoursNeeded, updateHoursNeeded] = useState('40');
 	const [hoursWorked, updateHoursWorked] = useState('32');
-	const [hoursRemaining, updateHoursRemaining] = useState('8');
+	const [hoursRemaining, updateHoursRemaining] = useState('7.7'); //change back to 8
 	const [hoursSum, updateHoursSum] = useState('8');
 	const [lunchHours, updateLunchHours] = useState('30');
 	const [lunchBox, updateLunchBox] = useState(true);
 	const [dayStart, updateDayStart] = useState(new Date(new Date().setHours(8, 0, 0, 0)));
 	const [dayEnd, updateDayEnd] = useState('5:00 PM');
 	const [showBanner, updateBanner] = useState(false);
+	const [roundedRemaining, updateRoundedRemaining] = useState('8');
 
 	const Ollie = Image.resolveAssetSource(OllieImage).uri;
 
@@ -85,6 +86,10 @@ export default function App() {
 		updateHoursSum((hoursRemaining * 60 + parseInt(minutes)) / 60);
 		updateDayEnd(moment(time).format('h:mm A'));
 		updateBanner(true);
+		const quarter = (parseInt((totalMinutes + 7.5)/15) * 15) % 60;
+		const roundedTime = (new Date(new Date().setHours(hours, quarter)));
+		updateRoundedRemaining(moment(roundedTime).format('h:mm A'));
+		console.log(roundedTime);
 	}
 
 	return (
@@ -153,30 +158,38 @@ export default function App() {
 				<View style={styles.row}>
 					{showBanner && (
 						<View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+
 							<Text style={styles.rowText}>
-								You finish at
-								{' '}
-								{dayEnd}
-								{' '}
-								today! You will need to work
-								{' '}
+								You will need to work:
 								{hoursSum}
+							</Text>
+							<Text style={styles.rowText}>
+								lunch needed?:
 								{' '}
-								hours
-								{lunchBox ? ' (including lunch) ' : ' '}
-								today to reach
+								{lunchBox ? 'Y' : 'N'}
+							</Text>
+							<Text style={styles.rowText}>
+								hours needed:
 								{' '}
 								{hoursNeeded}
-								{' '}
-								hours total.
 							</Text>
-							<Image
+							<Text style={styles.rowText}>
+								estimated time:
+								{' '}
+								{dayEnd}
+							</Text>
+							<Text style={styles.rowText}>
+								rounded time:
+								{' '}
+								{roundedRemaining}
+							</Text>
+							{/* <Image
 								source={{ uri: Ollie }}
 								style={{ margin: 10, width: 150, height: 150 }}
 							/>
 							<Text style={styles.rowText}>
 								Ollie is patiently waiting on you!
-							</Text>
+							</Text> */}
 						</View>
 					)}
 				</View>
