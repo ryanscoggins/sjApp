@@ -87,13 +87,14 @@ export default function App() {
 		updateDayEnd(moment(time).format('h:mm A'));
 		updateBanner(true);
 
-		console.log(hours);
-		// console.log(time);
-
-		// console.log(moment(time).format('h:mm A'));
 		const hour = time.getHours();
 		const quarter = (parseInt((totalMinutes + 7.5)/15) * 15) % 60;
-		const roundedTime = (new Date(new Date().setHours(hour, quarter)));
+		let roundedTime = (new Date(new Date().setHours(hour, quarter)));
+
+		if (time > roundedTime) {
+			roundedTime = (new Date(new Date().setHours(hour, quarter + 8)));
+		} else;
+
 		updateRoundedRemaining(moment(roundedTime).format('h:mm A'));
 	}
 
@@ -179,7 +180,7 @@ export default function App() {
 								{hoursNeeded}
 							</Text>
 							<Text style={styles.rowText}>
-								estimated time:
+								exact time:
 								{' '}
 								{dayEnd}
 							</Text>
