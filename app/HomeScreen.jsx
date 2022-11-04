@@ -91,12 +91,21 @@ export default function App() {
 		const hour = time.getHours();
 		const quarter = (parseInt((totalMinutes + 7.5) / 15) * 15) % 60;
 		let clockOutTime = (new Date(new Date().setHours(hour, quarter)));
+		console.log(moment(clockOutTime).format('h:mm A'));
+
+		if (quarter === 0) {
+			clockOutTime = (new Date(new Date().setHours(hour + 1, 0)));
+		} else;
+
+		console.log(moment(clockOutTime).format('h:mm A'));
 
 		if (time > clockOutTime) {
 			clockOutTime = (new Date(new Date().setHours(hour, quarter + 8)));
-		} else {
-			clockOutTime = (new Date(new Date().setHours(hour, quarter - 7)));
-		}
+		} else if (quarter === 0) {
+			clockOutTime = (new Date(new Date().setHours(hour + 1, 0)));
+		} else clockOutTime = (new Date(new Date().setHours(hour, quarter - 7)));
+
+		console.log(moment(clockOutTime).format('h:mm A'));
 
 		const roundedTime = new Date(new Date().setHours(hour, (parseInt(((clockOutTime.getMinutes()) + 7.5) / 15) * 15) % 60));
 
