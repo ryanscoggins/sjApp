@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
 export default function App() {
 	const [hoursNeeded, updateHoursNeeded] = useState('40');
 	const [hoursWorked, updateHoursWorked] = useState('32');
-	const [hoursRemaining, updateHoursRemaining] = useState('8'); //change back to 8
+	const [hoursRemaining, updateHoursRemaining] = useState('8'); // change back to 8
 	const [hoursSum, updateHoursSum] = useState('8');
 	const [lunchHours, updateLunchHours] = useState('30');
 	const [lunchBox, updateLunchBox] = useState(true);
@@ -55,6 +55,7 @@ export default function App() {
 	const [dayEnd, updateDayEnd] = useState('5:00 PM');
 	const [showBanner, updateBanner] = useState(false);
 	const [roundedRemaining, updateRoundedRemaining] = useState('8');
+	const [clockOut, updateClockOut] = useState('5:00 PM');
 
 	const Ollie = Image.resolveAssetSource(OllieImage).uri;
 
@@ -88,14 +89,16 @@ export default function App() {
 		updateBanner(true);
 
 		const hour = time.getHours();
-		const quarter = (parseInt((totalMinutes + 7.5)/15) * 15) % 60;
-		let roundedTime = (new Date(new Date().setHours(hour, quarter)));
+		const quarter = (parseInt((totalMinutes + 7.5) / 15) * 15) % 60;
+		const roundedTime = (new Date(new Date().setHours(hour, quarter)));
+		let clockOutTime = roundedTime;
 
 		if (time > roundedTime) {
-			roundedTime = (new Date(new Date().setHours(hour, quarter + 8)));
-		} else;
+			clockOutTime = (new Date(new Date().setHours(hour, quarter + 8)));
+		} else clockOutTime = (new Date(new Date().setHours(hour, quarter - 7)));
 
 		updateRoundedRemaining(moment(roundedTime).format('h:mm A'));
+		updateClockOut(moment(clockOutTime).format('h:mm A'));
 	}
 
 	return (
@@ -167,6 +170,7 @@ export default function App() {
 
 							<Text style={styles.rowText}>
 								You will need to work:
+								{' '}
 								{hoursSum}
 							</Text>
 							<Text style={styles.rowText}>
@@ -185,7 +189,12 @@ export default function App() {
 								{dayEnd}
 							</Text>
 							<Text style={styles.rowText}>
-								rounded time:
+								clock out time:
+								{' '}
+								{clockOut}
+							</Text>
+							<Text style={styles.rowText}>
+								will round to:
 								{' '}
 								{roundedRemaining}
 							</Text>
