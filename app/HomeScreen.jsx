@@ -175,6 +175,8 @@ export default function App() {
 								You will need to work:
 								{' '}
 								{hoursSum}
+								{' '}
+								hours
 							</Text>
 							{/* <Text style={styles.rowText}>
 								lunch needed?:
