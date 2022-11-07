@@ -92,29 +92,30 @@ export default function App() {
 		const minutes = time.getMinutes();
 		const quarter = (parseInt((totalMinutes + 7.5) / 15) * 15) % 60;
 		let clockOutTime = (new Date(new Date().setHours(hour, quarter)));
-		if (quarter === 0 && minutes > 7) {
+		if (quarter === 0 && (minutes > 7 && minutes < 53)) {
 			clockOutTime = (new Date(new Date().setHours(hour + 1, quarter)));
 		} else;
-		// console.log(moment(clockOutTime).format('h:mm A'));
-		console.log(`minutes: ${minutes}`);
 
-		// if (quarter === 0) {
-		// 	clockOutTime = (new Date(new Date().setHours(hour + 1, 0)));
-		// } else;
+		// console.log(`minutes: ${minutes}`);
 		console.log(`quarter: ${quarter}`);
-		console.log(`exact: ${dayEnd}`);
+		// console.log(`exact: ${dayEnd}`);
 		console.log(`before function CO: ${moment(clockOutTime).format('h:mm A')}`);
 
-		if (time > clockOutTime) {
+			console.log(hour);
+		if (time > clockOutTime && quarter !== 45) {
 			clockOutTime = (new Date(new Date().setHours(hour, quarter + 8)));
 		} else if (time < clockOutTime && quarter !== 0) {
 			clockOutTime = (new Date(new Date().setHours(hour, quarter - 7)));
 		} else if (time < clockOutTime && quarter === 0) {
 			clockOutTime = (new Date(new Date().setHours(hour + 1, -7)));
-			hour = clockOutTime.getHours() + 1;
+			hour += 1;
+		} else if (time > clockOutTime && quarter === 45) {
+			clockOutTime = (new Date(new Date().setHours(hour, quarter + 8)));
+			hour += 1;
 		} else;
 
-		console.log(moment(clockOutTime).format('h:mm A'));
+		// console.log(moment(clockOutTime).format('h:mm A'));
+		// console.log(`hour: ${hour}`);
 
 		const roundedTime = new Date(new Date().setHours(hour, (parseInt(((clockOutTime.getMinutes()) + 7.5) / 15) * 15) % 60));
 
