@@ -91,12 +91,12 @@ export default function App() {
 		const hour = time.getHours();
 		const quarter = (parseInt((totalMinutes + 7.5) / 15) * 15) % 60;
 		let clockOutTime = (new Date(new Date().setHours(hour, quarter)));
-		console.log(moment(clockOutTime).format('h:mm A'));
+		// console.log(moment(clockOutTime).format('h:mm A'));
 
-		if (quarter === 0) {
-			clockOutTime = (new Date(new Date().setHours(hour + 1, 0)));
-		} else;
-
+		// if (quarter === 0) {
+		// 	clockOutTime = (new Date(new Date().setHours(hour + 1, 0)));
+		// } else;
+		console.log(`exact: ${dayEnd}`);
 		console.log(moment(clockOutTime).format('h:mm A'));
 
 		if (time > clockOutTime) {
