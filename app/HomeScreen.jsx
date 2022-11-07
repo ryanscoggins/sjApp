@@ -61,8 +61,10 @@ export default function App() {
 
 	const Ollie = require('../assets/ollie.png');
 
-	const images = 
-		{ Ollie: require('../assets/ollie.png') };
+	const images = 		{
+		ollie1: require('../assets/ollie.png'),
+		ollie2: require('../assets/ollie2.jpg'),
+	};
 
 	function updateStart(e, date) {
 		const hours = date.getHours();
@@ -218,7 +220,7 @@ export default function App() {
 								{roundedRemaining}
 							</Text>
 							<Image
-								source={images.Ollie}
+								source={images.ollie2}
 								style={{ margin: 10, width: 150, height: 150 }}
 							/>
 							<Text style={styles.rowText}>
