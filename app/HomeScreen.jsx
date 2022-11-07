@@ -98,12 +98,11 @@ export default function App() {
 			clockOutTime = (new Date(new Date().setHours(hour + 1, quarter)));
 		} else;
 
-		console.log(`minutes: ${minutes}`);
-		console.log(`quarter: ${quarter}`);
+		// console.log(`minutes: ${minutes}`);
+		// console.log(`quarter: ${quarter}`);
 		// console.log(`exact: ${dayEnd}`);
-		console.log(`before function CO: ${moment(clockOutTime).format('h:mm A')}`);
+		// console.log(`before function CO: ${moment(clockOutTime).format('h:mm A')}`);
 
-			console.log(hour);
 		if (time > clockOutTime && quarter !== 45) {
 			clockOutTime = (new Date(new Date().setHours(hour, quarter + 8)));
 		} else if (time < clockOutTime && quarter !== 0) {
@@ -115,9 +114,6 @@ export default function App() {
 			clockOutTime = (new Date(new Date().setHours(hour, quarter + 8)));
 			hour += 1;
 		} else;
-
-		// console.log(moment(clockOutTime).format('h:mm A'));
-		// console.log(`hour: ${hour}`);
 
 		const roundedTime = new Date(new Date().setHours(hour, (parseInt(((clockOutTime.getMinutes()) + 7.5) / 15) * 15) % 60));
 
