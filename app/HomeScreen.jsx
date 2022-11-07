@@ -29,6 +29,9 @@ const styles = StyleSheet.create({
 	rowText: {
 		fontSize: '20',
 	},
+	largeText: {
+		fontSize: '30',
+	},
 	box: {
 		fontSize: '20',
 		borderWidth: 1,
@@ -187,7 +190,9 @@ export default function App() {
 				<View style={styles.row}>
 					{showBanner && (
 						<View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-
+							<Text style={styles.largeText}>
+								{clockOut}
+							</Text>
 							<Text style={styles.rowText}>
 								You will need to work:
 								{' '}
@@ -195,38 +200,28 @@ export default function App() {
 								{' '}
 								hours
 							</Text>
-							{/* <Text style={styles.rowText}>
-								lunch needed?:
-								{' '}
-								{lunchBox ? 'Y' : 'N'}
-							</Text>
 							<Text style={styles.rowText}>
-								hours needed:
-								{' '}
-								{hoursNeeded}
-							</Text> */}
-							<Text style={styles.rowText}>
-								exact time:
+								Exact time:
 								{' '}
 								{dayEnd}
 							</Text>
 							<Text style={styles.rowText}>
-								clock out time:
+								Clock out time:
 								{' '}
 								{clockOut}
 							</Text>
 							<Text style={styles.rowText}>
-								will round to:
+								Will round to:
 								{' '}
 								{roundedRemaining}
 							</Text>
-							{/* <Image
+							<Image
 								source={{ uri: Ollie }}
 								style={{ margin: 10, width: 150, height: 150 }}
 							/>
 							<Text style={styles.rowText}>
 								Ollie is patiently waiting on you!
-							</Text> */}
+							</Text>
 						</View>
 					)}
 				</View>
