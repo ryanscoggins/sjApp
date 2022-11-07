@@ -59,16 +59,20 @@ export default function App() {
 	const [roundedRemaining, updateRoundedRemaining] = useState('8');
 	const [clockOut, updateClockOut] = useState('5:00 PM');
 
-	const Ollie = require('../assets/ollie.png');
+	const images = 		[
+		require('../assets/ollie.png'),
+		require('../assets/ollie2.jpg'),
+		require('../assets/ollie3.png'),
+		require('../assets/ollie4.png'),
+		require('../assets/ollie5.png'),
+		require('../assets/ollie6.png'),
+	];
 
-	const images = 		{
-		ollie1: require('../assets/ollie.png'),
-		ollie2: require('../assets/ollie2.jpg'),
-		ollie3: require('../assets/ollie3.png'),
-		ollie4: require('../assets/ollie4.png'),
-		ollie5: require('../assets/ollie5.png'),
-		ollie6: require('../assets/ollie6.png'),
-	};
+	function randomImage(arr) {
+		const randomIndex = Math.floor(Math.random() * arr.length);
+		const image = arr[randomIndex];
+		return image;
+	}
 
 	function updateStart(e, date) {
 		const hours = date.getHours();
@@ -224,7 +228,7 @@ export default function App() {
 								{roundedRemaining}
 							</Text>
 							<Image
-								source={images.ollie3}
+								source={randomImage(images)}
 								style={{ margin: 10, width: 150, height: 150 }}
 							/>
 							<Text style={styles.rowText}>
