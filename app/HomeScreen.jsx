@@ -94,9 +94,11 @@ export default function App() {
 		let clockOutTime = (new Date(new Date().setHours(hour, quarter)));
 		if (quarter === 0 && (minutes > 7 && minutes < 53)) {
 			clockOutTime = (new Date(new Date().setHours(hour + 1, quarter)));
+		} else if (quarter === 0 && (minutes > 52)) {
+			clockOutTime = (new Date(new Date().setHours(hour + 1, quarter)));
 		} else;
 
-		// console.log(`minutes: ${minutes}`);
+		console.log(`minutes: ${minutes}`);
 		console.log(`quarter: ${quarter}`);
 		// console.log(`exact: ${dayEnd}`);
 		console.log(`before function CO: ${moment(clockOutTime).format('h:mm A')}`);
