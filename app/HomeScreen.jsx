@@ -77,33 +77,42 @@ export default function App() {
 	}
 
 	function calculate() {
-		let minutes = 0;
+		let lunchMinutes = 0;
 		if (lunchBox) {
-			minutes = lunchHours;
+			lunchMinutes = lunchHours;
 		} else;
 		const hours = parseFloat(dayStart.getHours()) + parseFloat(hoursRemaining);
-		const totalMinutes = (hours * 60) + dayStart.getMinutes() + parseInt(minutes);
+		const totalMinutes = (hours * 60) + dayStart.getMinutes() + parseInt(lunchMinutes);
 		const time = (new Date(new Date().setHours(0, totalMinutes)));
-		updateHoursSum((hoursRemaining * 60 + parseInt(minutes)) / 60);
+		updateHoursSum((hoursRemaining * 60 + parseInt(lunchMinutes)) / 60);
 		updateDayEnd(moment(time).format('h:mm A'));
 		updateBanner(true);
 
-		const hour = time.getHours();
+		let hour = time.getHours();
+		const minutes = time.getMinutes();
 		const quarter = (parseInt((totalMinutes + 7.5) / 15) * 15) % 60;
 		let clockOutTime = (new Date(new Date().setHours(hour, quarter)));
+		if (quarter === 0 && minutes > 7) {
+			clockOutTime = (new Date(new Date().setHours(hour + 1, quarter)));
+		} else;
 		// console.log(moment(clockOutTime).format('h:mm A'));
+		console.log(`minutes: ${minutes}`);
 
 		// if (quarter === 0) {
 		// 	clockOutTime = (new Date(new Date().setHours(hour + 1, 0)));
 		// } else;
+		console.log(`quarter: ${quarter}`);
 		console.log(`exact: ${dayEnd}`);
-		console.log(moment(clockOutTime).format('h:mm A'));
+		console.log(`before function CO: ${moment(clockOutTime).format('h:mm A')}`);
 
 		if (time > clockOutTime) {
 			clockOutTime = (new Date(new Date().setHours(hour, quarter + 8)));
-		} else if (quarter === 0) {
-			clockOutTime = (new Date(new Date().setHours(hour + 1, 0)));
-		} else clockOutTime = (new Date(new Date().setHours(hour, quarter - 7)));
+		} else if (time < clockOutTime && quarter !== 0) {
+			clockOutTime = (new Date(new Date().setHours(hour, quarter - 7)));
+		} else if (time < clockOutTime && quarter === 0) {
+			clockOutTime = (new Date(new Date().setHours(hour + 1, -7)));
+			hour = clockOutTime.getHours() + 1;
+		} else;
 
 		console.log(moment(clockOutTime).format('h:mm A'));
 
