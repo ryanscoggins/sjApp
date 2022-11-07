@@ -5,7 +5,6 @@ import {
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Checkbox from 'expo-checkbox';
 import moment from 'moment';
-import OllieImage from '../assets/ollie.png';
 
 const styles = StyleSheet.create({
 	container: {
@@ -60,7 +59,7 @@ export default function App() {
 	const [roundedRemaining, updateRoundedRemaining] = useState('8');
 	const [clockOut, updateClockOut] = useState('5:00 PM');
 
-	const Ollie = Image.resolveAssetSource(OllieImage).uri;
+	const Ollie = require('../assets/ollie.png');
 
 	function updateStart(e, date) {
 		const hours = date.getHours();
@@ -216,7 +215,7 @@ export default function App() {
 								{roundedRemaining}
 							</Text>
 							<Image
-								source={{ uri: Ollie }}
+								source={Ollie}
 								style={{ margin: 10, width: 150, height: 150 }}
 							/>
 							<Text style={styles.rowText}>
