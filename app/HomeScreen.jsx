@@ -64,6 +64,10 @@ export default function App() {
 	const images = 		{
 		ollie1: require('../assets/ollie.png'),
 		ollie2: require('../assets/ollie2.jpg'),
+		ollie3: require('../assets/ollie3.png'),
+		ollie4: require('../assets/ollie4.png'),
+		ollie5: require('../assets/ollie5.png'),
+		ollie6: require('../assets/ollie6.png'),
 	};
 
 	function updateStart(e, date) {
@@ -220,7 +224,7 @@ export default function App() {
 								{roundedRemaining}
 							</Text>
 							<Image
-								source={images.ollie2}
+								source={images.ollie3}
 								style={{ margin: 10, width: 150, height: 150 }}
 							/>
 							<Text style={styles.rowText}>
