@@ -176,9 +176,6 @@ export default function App() {
 				<View style={styles.row}>
 					{showBanner && (
 						<View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-							<Text style={styles.largeText}>
-								{dayEnd}
-							</Text>
 							<Text style={styles.rowText}>
 								You will need to work:
 								{' '}
@@ -187,19 +184,14 @@ export default function App() {
 								hours
 							</Text>
 							<Text style={styles.rowText}>
-								Clock out anytime between
+								Earliest clock out:
 								{' '}
 								{clockOutEarly}
-								{' '}
-								and
+							</Text>
+							<Text style={styles.rowText}>
+								Latest clock out:
 								{' '}
 								{clockOutLate}
-								{' '}
-								in order to work
-								{' '}
-								{hoursSum}
-								{' '}
-								hours.
 							</Text>
 							<Image
 								source={randomImage(images)}
