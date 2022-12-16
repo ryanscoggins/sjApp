@@ -108,42 +108,6 @@ export default function App() {
 		updateClockOutLate(moment(lateFinish).format('h:mm A'));
 		updateHoursSum((hoursRemaining * 60 + parseInt(lunchMinutes)) / 60);
 		updateBanner(true);
-
-		let hour = exactFinish.getHours();
-		const minutes = exactFinish.getMinutes();
-		const quarter = (parseInt((totalMinutes + 7.5) / 15) * 15) % 60;
-		let clockOutTime = (new Date(new Date().setHours(hour, quarter)));
-		if (quarter === 0 && (minutes > 7 && minutes < 53)) {
-			clockOutTime = (new Date(new Date().setHours(hour + 1, quarter)));
-		} else if (quarter === 0 && (minutes > 52)) {
-			clockOutTime = (new Date(new Date().setHours(hour + 1, quarter)));
-		} else;
-
-		console.log(dayEnd);
-		console.log(clockOutEarly);
-		console.log(clockOutLate);
-
-		// console.log(`roundedRemain: ${roundedRemaining}`);
-		// console.log(`quarter: ${quarter}`);
-		// console.log(`exact: ${dayEnd}`);
-		// console.log(`before function CO: ${moment(clockOutTime).format('h:mm A')}`);
-
-		// if (time > clockOutTime && quarter !== 45) {
-		// 	clockOutTime = (new Date(new Date().setHours(hour, quarter + 8)));
-		// } else if (time < clockOutTime && quarter !== 0) {
-		// 	clockOutTime = (new Date(new Date().setHours(hour, quarter - 7)));
-		// } else if (time < clockOutTime && quarter === 0) {
-		// 	clockOutTime = (new Date(new Date().setHours(hour + 1, -7)));
-		// 	hour += 1;
-		// } else if (time > clockOutTime && quarter === 45) {
-		// 	clockOutTime = (new Date(new Date().setHours(hour, quarter + 8)));
-		// 	hour += 1;
-		// } else;
-
-		const roundedTime = new Date(new Date().setHours(hour, (parseInt(((clockOutTime.getMinutes()) + 7.5) / 15) * 15) % 60));
-
-		updateRoundedRemaining(moment(roundedTime).format('h:mm A'));
-		// updateClockOut(moment(clockOutTime).format('h:mm A'));
 	}
 
 	return (
@@ -212,9 +176,9 @@ export default function App() {
 				<View style={styles.row}>
 					{showBanner && (
 						<View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-							{/* <Text style={styles.largeText}>
-								{clockOut}
-							</Text> */}
+							<Text style={styles.largeText}>
+								{dayEnd}
+							</Text>
 							<Text style={styles.rowText}>
 								You will need to work:
 								{' '}
@@ -222,21 +186,21 @@ export default function App() {
 								{' '}
 								hours
 							</Text>
-							{/* <Text style={styles.rowText}>
-								Exact time:
-								{' '}
-								{dayEnd}
-							</Text>
 							<Text style={styles.rowText}>
-								Clock out time:
+								Clock out anytime between
 								{' '}
-								{clockOut}
+								{clockOutEarly}
+								{' '}
+								and
+								{' '}
+								{clockOutLate}
+								{' '}
+								in order to work
+								{' '}
+								{hoursSum}
+								{' '}
+								hours.
 							</Text>
-							<Text style={styles.rowText}>
-								Will round to:
-								{' '}
-								{roundedRemaining}
-							</Text> */}
 							<Image
 								source={randomImage(images)}
 								style={{ margin: 10, width: 150, height: 150 }}
