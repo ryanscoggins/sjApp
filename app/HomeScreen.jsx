@@ -57,7 +57,8 @@ export default function App() {
 	const [dayEnd, updateDayEnd] = useState('5:00 PM');
 	const [showBanner, updateBanner] = useState(false);
 	const [roundedRemaining, updateRoundedRemaining] = useState('8');
-	const [clockOut, updateClockOut] = useState('5:00 PM');
+	const [clockOutEarly, updateClockOutEarly] = useState('5:00 PM');
+	const [clockOutLate, updateClockOutLate] = useState('5:00 PM');
 
 	const images = 		[
 		require('../assets/ollie.png'),
@@ -98,13 +99,18 @@ export default function App() {
 		} else;
 		const hours = parseFloat(dayStart.getHours()) + parseFloat(hoursRemaining);
 		const totalMinutes = (hours * 60) + dayStart.getMinutes() + parseInt(lunchMinutes);
-		const time = (new Date(new Date().setHours(0, totalMinutes)));
+		const exactFinish = (new Date(new Date().setHours(0, totalMinutes)));
+		const earlyFinish = (new Date(new Date().setHours(0, totalMinutes - 7)));
+		const lateFinish = (new Date(new Date().setHours(0, totalMinutes + 7)));
+
+		updateDayEnd(moment(exactFinish).format('h:mm A'));
+		updateClockOutEarly(moment(earlyFinish).format('h:mm A'));
+		updateClockOutLate(moment(lateFinish).format('h:mm A'));
 		updateHoursSum((hoursRemaining * 60 + parseInt(lunchMinutes)) / 60);
-		updateDayEnd(moment(time).format('h:mm A'));
 		updateBanner(true);
 
-		let hour = time.getHours();
-		const minutes = time.getMinutes();
+		let hour = exactFinish.getHours();
+		const minutes = exactFinish.getMinutes();
 		const quarter = (parseInt((totalMinutes + 7.5) / 15) * 15) % 60;
 		let clockOutTime = (new Date(new Date().setHours(hour, quarter)));
 		if (quarter === 0 && (minutes > 7 && minutes < 53)) {
@@ -113,27 +119,31 @@ export default function App() {
 			clockOutTime = (new Date(new Date().setHours(hour + 1, quarter)));
 		} else;
 
-		// console.log(`minutes: ${minutes}`);
+		console.log(dayEnd);
+		console.log(clockOutEarly);
+		console.log(clockOutLate);
+
+		// console.log(`roundedRemain: ${roundedRemaining}`);
 		// console.log(`quarter: ${quarter}`);
 		// console.log(`exact: ${dayEnd}`);
 		// console.log(`before function CO: ${moment(clockOutTime).format('h:mm A')}`);
 
-		if (time > clockOutTime && quarter !== 45) {
-			clockOutTime = (new Date(new Date().setHours(hour, quarter + 8)));
-		} else if (time < clockOutTime && quarter !== 0) {
-			clockOutTime = (new Date(new Date().setHours(hour, quarter - 7)));
-		} else if (time < clockOutTime && quarter === 0) {
-			clockOutTime = (new Date(new Date().setHours(hour + 1, -7)));
-			hour += 1;
-		} else if (time > clockOutTime && quarter === 45) {
-			clockOutTime = (new Date(new Date().setHours(hour, quarter + 8)));
-			hour += 1;
-		} else;
+		// if (time > clockOutTime && quarter !== 45) {
+		// 	clockOutTime = (new Date(new Date().setHours(hour, quarter + 8)));
+		// } else if (time < clockOutTime && quarter !== 0) {
+		// 	clockOutTime = (new Date(new Date().setHours(hour, quarter - 7)));
+		// } else if (time < clockOutTime && quarter === 0) {
+		// 	clockOutTime = (new Date(new Date().setHours(hour + 1, -7)));
+		// 	hour += 1;
+		// } else if (time > clockOutTime && quarter === 45) {
+		// 	clockOutTime = (new Date(new Date().setHours(hour, quarter + 8)));
+		// 	hour += 1;
+		// } else;
 
 		const roundedTime = new Date(new Date().setHours(hour, (parseInt(((clockOutTime.getMinutes()) + 7.5) / 15) * 15) % 60));
 
 		updateRoundedRemaining(moment(roundedTime).format('h:mm A'));
-		updateClockOut(moment(clockOutTime).format('h:mm A'));
+		// updateClockOut(moment(clockOutTime).format('h:mm A'));
 	}
 
 	return (
@@ -202,9 +212,9 @@ export default function App() {
 				<View style={styles.row}>
 					{showBanner && (
 						<View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-							<Text style={styles.largeText}>
+							{/* <Text style={styles.largeText}>
 								{clockOut}
-							</Text>
+							</Text> */}
 							<Text style={styles.rowText}>
 								You will need to work:
 								{' '}
@@ -212,7 +222,7 @@ export default function App() {
 								{' '}
 								hours
 							</Text>
-							<Text style={styles.rowText}>
+							{/* <Text style={styles.rowText}>
 								Exact time:
 								{' '}
 								{dayEnd}
@@ -226,7 +236,7 @@ export default function App() {
 								Will round to:
 								{' '}
 								{roundedRemaining}
-							</Text>
+							</Text> */}
 							<Image
 								source={randomImage(images)}
 								style={{ margin: 10, width: 150, height: 150 }}
