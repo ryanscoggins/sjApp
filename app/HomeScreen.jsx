@@ -58,13 +58,25 @@ const styles = StyleSheet.create({
 export default function App() {
 	const initialDailyHours = [
 		{
-			id: 'm',
-			hours: '8'
+			id: 'M',
+			hours: 8
 		},
 		{
-			id: 't',
-			hours: '7'
-		}
+			id: 'T',
+			hours: 8
+		},
+		{
+			id: 'W',
+			hours: 8
+		},
+		{
+			id: 'Th',
+			hours: 8
+		},
+		{
+			id: 'F',
+			hours: 8
+		},
 	]
 	const [hoursNeeded, updateHoursNeeded] = useState('40');
 	const [hoursWorked, updateHoursWorked] = useState('32');
@@ -100,7 +112,6 @@ export default function App() {
 	}
 
 	function updateWorked(id, text) {
-		console.log('new insert');
 		const newHours = dailyHours.map((item) => {
 			if (item.id === id) {
 				const updatedItem = {
@@ -114,6 +125,8 @@ export default function App() {
 
 		updateDailyHours(newHours);
 
+		var arrayOfNumbers = dailyHours.map(Number);
+		console.log(arrayOfNumbers);
 		// updateHoursWorked(text);
 		// const remainingHours = (Math.round(((hoursNeeded - text) * 100)) / 100);
 		// updateHoursRemaining(remainingHours);
@@ -176,52 +189,11 @@ export default function App() {
 					</Text>
 				<TextInput
 					style={styles.box}
-					value={item.hours}
+					value={item.hours.toString()}
 					onChangeText={(text) => updateWorked(item.id, text)}
 				/>
 				</View>
 					))}
-
-					{/* <View style={styles.stack}>
-						<Text style={styles.stackLetter}>
-							T
-						</Text> */}
-					{/* <TextInput
-						style={styles.box}
-						value={dailyHours[1]}
-						onChangeText={(text) => updateWorked(text)}
-					/>
-					</View>
-					<View style={styles.stack}>
-						<Text style={styles.stackLetter}>
-							W
-						</Text>
-					<TextInput
-						style={styles.box}
-						value={dailyHours[1]}
-						onChangeText={(text) => updateWorked(text)}
-					/>
-					</View>
-					<View style={styles.stack}>
-						<Text style={styles.stackLetter}>
-							T
-						</Text>
-					<TextInput
-						style={styles.box}
-						value={dailyHours[1]}
-						onChangeText={(text) => updateWorked(text)}
-					/>
-					</View>
-					<View style={styles.stack}>
-						<Text style={styles.stackLetter}>
-							F
-						</Text>
-					<TextInput
-						style={styles.box}
-						value={dailyHours[1]}
-						onChangeText={(text) => updateWorked(text)}
-					/>
-					</View> */}
 				</View>
 				
 				<View style={styles.row}>
