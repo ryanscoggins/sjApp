@@ -5,6 +5,7 @@ import {
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Checkbox from 'expo-checkbox';
 import moment from 'moment';
+import Constants from 'expo-constants';
 
 const styles = StyleSheet.create({
 	container: {
@@ -53,6 +54,12 @@ const styles = StyleSheet.create({
 	stackLetter: {
 		fontSize: 20,
 	},
+	version: {
+		fontSize: 15,
+		position: 'absolute',
+		bottom: 0,
+		right: 0,
+	}
 });
 
 export default function App() {
@@ -164,7 +171,7 @@ export default function App() {
 	return (
 		<View style={styles.container}>
 			<View style={styles.titleContainer}>
-				<Text style={styles.titleText}>Happy Friday, SJ!</Text>
+				<Text style={styles.titleText}>You rock, SJ!</Text>
 			</View>
 			<View style={styles.contentContainer}>
 				<View style={styles.row}>
@@ -266,9 +273,13 @@ export default function App() {
 							<Text style={styles.rowText}>
 								Ollie is patiently waiting on you!
 							</Text>
+
 						</View>
 					)}
 				</View>
+				<Text style={styles.version}>
+								{`v${Constants.manifest.version}`}
+</Text>
 			</View>
 		</View>
 	);
