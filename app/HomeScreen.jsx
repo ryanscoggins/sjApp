@@ -119,7 +119,7 @@ export default function App() {
 		updateHoursSum((remainingHours * 60 + parseInt(lunchMinutes)) / 60);
 		updateBanner(false);	
 
-	}, [dailyHours, dayStart])
+	}, [dailyHours, dayStart, hoursNeeded])
 
 	function randomImage(arr) {
 		const randomIndex = Math.floor(Math.random() * arr.length);
@@ -187,7 +187,7 @@ export default function App() {
 					<TextInput
 						style={styles.box}
 						value={hoursWorked}
-						onChangeText={(text) => updateWorked(text)}
+						editable='false'
 					/>
 				</View>
 				<View style={styles.row}>
