@@ -106,7 +106,6 @@ export default function App() {
 		updateHoursWorked(totalHoursWorked.toString())
 		const remainingHours = (Math.round(((hoursNeeded - totalHoursWorked) * 100)) / 100);
 		updateHoursRemaining(remainingHours);
-		console.log(`remaining: ${remainingHours}`)
 		if (remainingHours < 6) {
 			updateLunchBox(false);
 		} else {
@@ -118,8 +117,10 @@ export default function App() {
 		} else;
 
 		updateHoursSum((remainingHours * 60 + parseInt(lunchMinutes)) / 60);
-		
-	}, dailyHours, dayStart)
+		updateBanner(false);	
+		calculate();
+
+	}, [dailyHours, dayStart])
 
 	function randomImage(arr) {
 		const randomIndex = Math.floor(Math.random() * arr.length);
@@ -130,6 +131,7 @@ export default function App() {
 	function updateStart(e, date) {
 		const hours = date.getHours();
 		const minutes = date.getMinutes();
+		console.log('day start function');
 		updateDayStart(new Date(new Date().setHours(hours, minutes)));
 	}
 
@@ -144,7 +146,6 @@ export default function App() {
 			}
 			return item;
 		});
-
 		updateDailyHours(newHours);
 	}
 
