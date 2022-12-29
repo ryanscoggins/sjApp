@@ -51,33 +51,33 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	stackLetter: {
-		fontSize: 20
-	}
+		fontSize: 20,
+	},
 });
 
 export default function App() {
 	const initialDailyHours = [
 		{
 			id: 'M',
-			hours: '8'
+			hours: '8',
 		},
 		{
 			id: 'T',
-			hours: '8'
+			hours: '8',
 		},
 		{
 			id: 'W',
-			hours: '8'
+			hours: '8',
 		},
 		{
 			id: 'Th',
-			hours: '8'
+			hours: '8',
 		},
 		{
 			id: 'F',
-			hours: '0'
+			hours: '0',
 		},
-	]
+	];
 	const [hoursNeeded, updateHoursNeeded] = useState('40');
 	const [hoursWorked, updateHoursWorked] = useState('32');
 	const [dailyHours, updateDailyHours] = useState(initialDailyHours);
@@ -100,10 +100,8 @@ export default function App() {
 	];
 
 	useEffect(() => {
-		const totalHoursWorked = dailyHours.reduce((accumulator, object) => {
-			return accumulator + Number(object.hours);
-		  }, 0);
-		updateHoursWorked(totalHoursWorked.toString())
+		const totalHoursWorked = dailyHours.reduce((accumulator, object) => accumulator + Number(object.hours), 0);
+		updateHoursWorked(totalHoursWorked.toString());
 		const remainingHours = (Math.round(((hoursNeeded - totalHoursWorked) * 100)) / 100);
 		updateHoursRemaining(remainingHours);
 		if (remainingHours < 6) {
@@ -117,9 +115,8 @@ export default function App() {
 		} else;
 
 		updateHoursSum((remainingHours * 60 + parseInt(lunchMinutes)) / 60);
-		updateBanner(false);	
-
-	}, [dailyHours, dayStart, hoursNeeded])
+		updateBanner(false);
+	}, [dailyHours, dayStart, hoursNeeded]);
 
 	function randomImage(arr) {
 		const randomIndex = Math.floor(Math.random() * arr.length);
@@ -187,24 +184,24 @@ export default function App() {
 					<TextInput
 						style={styles.box}
 						value={hoursWorked}
-						editable='false'
+						editable="false"
 					/>
 				</View>
 				<View style={styles.row}>
-					{dailyHours.map((item) =>(
-					<View style={styles.stack} key={item.id}>
-					<Text style={styles.stackLetter}>
-						{item.id}
-					</Text>
-				<TextInput
-					style={styles.box}
-					value={item.hours.toString()}
-					onChangeText={(text) => updateWorked(item.id, text)}
-				/>
-				</View>
+					{dailyHours.map((item) => (
+						<View style={styles.stack} key={item.id}>
+							<Text style={styles.stackLetter}>
+								{item.id}
+							</Text>
+							<TextInput
+								style={styles.box}
+								value={item.hours.toString()}
+								onChangeText={(text) => updateWorked(item.id, text)}
+							/>
+						</View>
 					))}
 				</View>
-				
+
 				<View style={styles.row}>
 					<Text style={styles.rowText}>
 						Taking Lunch?:
