@@ -59,23 +59,23 @@ export default function App() {
 	const initialDailyHours = [
 		{
 			id: 'M',
-			hours: 8
+			hours: '8'
 		},
 		{
 			id: 'T',
-			hours: 8
+			hours: '8'
 		},
 		{
 			id: 'W',
-			hours: 8
+			hours: '8'
 		},
 		{
 			id: 'Th',
-			hours: 8
+			hours: '8'
 		},
 		{
 			id: 'F',
-			hours: 8
+			hours: '8'
 		},
 	]
 	const [hoursNeeded, updateHoursNeeded] = useState('40');
@@ -116,7 +116,7 @@ export default function App() {
 			if (item.id === id) {
 				const updatedItem = {
 					...item,
-					hours: parseInt(text),
+					hours: text,
 				};
 				return updatedItem;
 			}
@@ -125,13 +125,13 @@ export default function App() {
 
 		updateDailyHours(newHours);
 
-		console.log(dailyHours)
+		// console.log(dailyHours)
 
-		// const totalHoursWorked = dailyHours.reduce((accumulator, object) => {
-		// 	return accumulator + object.hours;
-		//   }, 0);
+		const totalHoursWorked = dailyHours.reduce((accumulator, object) => {
+			return accumulator + Number(object.hours);
+		  }, 0);
 
-		// console.log(totalHoursWorked);
+		console.log(totalHoursWorked);
 		// updateHoursWorked(text);
 		// const remainingHours = (Math.round(((hoursNeeded - text) * 100)) / 100);
 		// updateHoursRemaining(remainingHours);
