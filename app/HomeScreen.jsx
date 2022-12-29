@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
 	StyleSheet, Text, View, TextInput, Button, Image,
 } from 'react-native';
@@ -75,7 +75,7 @@ export default function App() {
 		},
 		{
 			id: 'F',
-			hours: '8'
+			hours: '0'
 		},
 	]
 	const [hoursNeeded, updateHoursNeeded] = useState('40');
@@ -98,6 +98,28 @@ export default function App() {
 		require('../assets/ollie5.png'),
 		require('../assets/ollie6.png'),
 	];
+
+	useEffect(() => {
+		const totalHoursWorked = dailyHours.reduce((accumulator, object) => {
+			return accumulator + Number(object.hours);
+		  }, 0);
+		updateHoursWorked(totalHoursWorked.toString())
+		const remainingHours = (Math.round(((hoursNeeded - totalHoursWorked) * 100)) / 100);
+		updateHoursRemaining(remainingHours);
+		console.log(`remaining: ${remainingHours}`)
+		if (remainingHours < 6) {
+			updateLunchBox(false);
+		} else {
+			updateLunchBox(true);
+		}
+		let lunchMinutes = 0;
+		if (lunchBox) {
+			lunchMinutes = lunchHours;
+		} else;
+
+		updateHoursSum((remainingHours * 60 + parseInt(lunchMinutes)) / 60);
+		
+	}, dailyHours, dayStart)
 
 	function randomImage(arr) {
 		const randomIndex = Math.floor(Math.random() * arr.length);
@@ -124,22 +146,6 @@ export default function App() {
 		});
 
 		updateDailyHours(newHours);
-
-		// console.log(dailyHours)
-
-		const totalHoursWorked = dailyHours.reduce((accumulator, object) => {
-			return accumulator + Number(object.hours);
-		  }, 0);
-
-		console.log(totalHoursWorked);
-		// updateHoursWorked(text);
-		// const remainingHours = (Math.round(((hoursNeeded - text) * 100)) / 100);
-		// updateHoursRemaining(remainingHours);
-		// if (remainingHours < 6) {
-		// 	updateLunchBox(false);
-		// } else {
-		// 	updateLunchBox(true);
-		// }
 	}
 
 	function calculate() {
@@ -147,16 +153,14 @@ export default function App() {
 		if (lunchBox) {
 			lunchMinutes = lunchHours;
 		} else;
+
 		const hours = parseFloat(dayStart.getHours()) + parseFloat(hoursRemaining);
 		const totalMinutes = (hours * 60) + dayStart.getMinutes() + parseInt(lunchMinutes);
-		const exactFinish = (new Date(new Date().setHours(0, totalMinutes)));
 		const earlyFinish = (new Date(new Date().setHours(0, totalMinutes - 7)));
 		const lateFinish = (new Date(new Date().setHours(0, totalMinutes + 7)));
 
-		updateDayEnd(moment(exactFinish).format('h:mm A'));
 		updateClockOutEarly(moment(earlyFinish).format('h:mm A'));
 		updateClockOutLate(moment(lateFinish).format('h:mm A'));
-		updateHoursSum((hoursRemaining * 60 + parseInt(lunchMinutes)) / 60);
 		updateBanner(true);
 	}
 
