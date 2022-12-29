@@ -116,7 +116,7 @@ export default function App() {
 			if (item.id === id) {
 				const updatedItem = {
 					...item,
-					hours: text,
+					hours: parseInt(text),
 				};
 				return updatedItem;
 			}
@@ -125,8 +125,13 @@ export default function App() {
 
 		updateDailyHours(newHours);
 
-		var arrayOfNumbers = dailyHours.map(Number);
-		console.log(arrayOfNumbers);
+		console.log(dailyHours)
+
+		// const totalHoursWorked = dailyHours.reduce((accumulator, object) => {
+		// 	return accumulator + object.hours;
+		//   }, 0);
+
+		// console.log(totalHoursWorked);
 		// updateHoursWorked(text);
 		// const remainingHours = (Math.round(((hoursNeeded - text) * 100)) / 100);
 		// updateHoursRemaining(remainingHours);
