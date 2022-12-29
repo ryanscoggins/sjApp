@@ -56,16 +56,25 @@ const styles = StyleSheet.create({
 });
 
 export default function App() {
+	const initialDailyHours = [
+		{
+			id: 'm',
+			hours: '8'
+		},
+		{
+			id: 't',
+			hours: '7'
+		}
+	]
 	const [hoursNeeded, updateHoursNeeded] = useState('40');
 	const [hoursWorked, updateHoursWorked] = useState('32');
+	const [dailyHours, updateDailyHours] = useState(initialDailyHours);
 	const [hoursRemaining, updateHoursRemaining] = useState('8');
 	const [hoursSum, updateHoursSum] = useState('8');
 	const [lunchHours, updateLunchHours] = useState('30');
 	const [lunchBox, updateLunchBox] = useState(true);
 	const [dayStart, updateDayStart] = useState(new Date(new Date().setHours(8, 0, 0, 0)));
-	const [dayEnd, updateDayEnd] = useState('5:00 PM');
 	const [showBanner, updateBanner] = useState(false);
-	const [roundedRemaining, updateRoundedRemaining] = useState('8');
 	const [clockOutEarly, updateClockOutEarly] = useState('5:00 PM');
 	const [clockOutLate, updateClockOutLate] = useState('5:00 PM');
 
@@ -90,15 +99,29 @@ export default function App() {
 		updateDayStart(new Date(new Date().setHours(hours, minutes)));
 	}
 
-	function updateWorked(text) {
-		updateHoursWorked(text);
-		const remainingHours = (Math.round(((hoursNeeded - text) * 100)) / 100);
-		updateHoursRemaining(remainingHours);
-		if (remainingHours < 6) {
-			updateLunchBox(false);
-		} else {
-			updateLunchBox(true);
-		}
+	function updateWorked(id, text) {
+		console.log('new insert');
+		const newHours = dailyHours.map((item) => {
+			if (item.id === id) {
+				const updatedItem = {
+					...item,
+					hours: text,
+				};
+				return updatedItem;
+			}
+			return item;
+		});
+
+		updateDailyHours(newHours);
+
+		// updateHoursWorked(text);
+		// const remainingHours = (Math.round(((hoursNeeded - text) * 100)) / 100);
+		// updateHoursRemaining(remainingHours);
+		// if (remainingHours < 6) {
+		// 	updateLunchBox(false);
+		// } else {
+		// 	updateLunchBox(true);
+		// }
 	}
 
 	function calculate() {
@@ -146,23 +169,26 @@ export default function App() {
 					/>
 				</View>
 				<View style={styles.row}>
-					<View style={styles.stack}>
-						<Text style={styles.stackLetter}>
-							M
-						</Text>
-					<TextInput
-						style={styles.box}
-						value={hoursWorked}
-						onChangeText={(text) => updateWorked(text)}
-					/>
-					</View>
-					<View style={styles.stack}>
+					{dailyHours.map((item) =>(
+					<View style={styles.stack} key={item.id}>
+					<Text style={styles.stackLetter}>
+						{item.id}
+					</Text>
+				<TextInput
+					style={styles.box}
+					value={item.hours}
+					onChangeText={(text) => updateWorked(item.id, text)}
+				/>
+				</View>
+					))}
+
+					{/* <View style={styles.stack}>
 						<Text style={styles.stackLetter}>
 							T
-						</Text>
-					<TextInput
+						</Text> */}
+					{/* <TextInput
 						style={styles.box}
-						value={hoursWorked}
+						value={dailyHours[1]}
 						onChangeText={(text) => updateWorked(text)}
 					/>
 					</View>
@@ -172,7 +198,7 @@ export default function App() {
 						</Text>
 					<TextInput
 						style={styles.box}
-						value={hoursWorked}
+						value={dailyHours[1]}
 						onChangeText={(text) => updateWorked(text)}
 					/>
 					</View>
@@ -182,7 +208,7 @@ export default function App() {
 						</Text>
 					<TextInput
 						style={styles.box}
-						value={hoursWorked}
+						value={dailyHours[1]}
 						onChangeText={(text) => updateWorked(text)}
 					/>
 					</View>
@@ -192,10 +218,10 @@ export default function App() {
 						</Text>
 					<TextInput
 						style={styles.box}
-						value={hoursWorked}
+						value={dailyHours[1]}
 						onChangeText={(text) => updateWorked(text)}
 					/>
-					</View>
+					</View> */}
 				</View>
 				
 				<View style={styles.row}>
