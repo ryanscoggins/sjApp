@@ -44,6 +44,15 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
+	stack: {
+		display: 'flex',
+		flexDirection: 'column',
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	stackLetter: {
+		fontSize: 20
+	}
 });
 
 export default function App() {
@@ -136,6 +145,59 @@ export default function App() {
 						onChangeText={(text) => updateWorked(text)}
 					/>
 				</View>
+				<View style={styles.row}>
+					<View style={styles.stack}>
+						<Text style={styles.stackLetter}>
+							M
+						</Text>
+					<TextInput
+						style={styles.box}
+						value={hoursWorked}
+						onChangeText={(text) => updateWorked(text)}
+					/>
+					</View>
+					<View style={styles.stack}>
+						<Text style={styles.stackLetter}>
+							T
+						</Text>
+					<TextInput
+						style={styles.box}
+						value={hoursWorked}
+						onChangeText={(text) => updateWorked(text)}
+					/>
+					</View>
+					<View style={styles.stack}>
+						<Text style={styles.stackLetter}>
+							W
+						</Text>
+					<TextInput
+						style={styles.box}
+						value={hoursWorked}
+						onChangeText={(text) => updateWorked(text)}
+					/>
+					</View>
+					<View style={styles.stack}>
+						<Text style={styles.stackLetter}>
+							T
+						</Text>
+					<TextInput
+						style={styles.box}
+						value={hoursWorked}
+						onChangeText={(text) => updateWorked(text)}
+					/>
+					</View>
+					<View style={styles.stack}>
+						<Text style={styles.stackLetter}>
+							F
+						</Text>
+					<TextInput
+						style={styles.box}
+						value={hoursWorked}
+						onChangeText={(text) => updateWorked(text)}
+					/>
+					</View>
+				</View>
+				
 				<View style={styles.row}>
 					<Text style={styles.rowText}>
 						Taking Lunch?:
