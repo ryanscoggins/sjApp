@@ -118,7 +118,6 @@ export default function App() {
 
 		updateHoursSum((remainingHours * 60 + parseInt(lunchMinutes)) / 60);
 		updateBanner(false);	
-		calculate();
 
 	}, [dailyHours, dayStart])
 
