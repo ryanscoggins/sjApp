@@ -92,6 +92,7 @@ export default function App() {
 	const [hoursSum, updateHoursSum] = useState('8');
 	const [lunchHours, updateLunchHours] = useState('30');
 	const [lunchBox, updateLunchBox] = useState(true);
+	const [disableLunchBox, updateDisableLunchBox] = useState(false);
 	const [dayStart, updateDayStart] = useState(new Date(new Date().setHours(8, 0, 0, 0)));
 	const [showBanner, updateBanner] = useState(false);
 	const [clockOutEarly, updateClockOutEarly] = useState('5:00 PM');
@@ -111,11 +112,12 @@ export default function App() {
 		updateHoursWorked(totalHoursWorked.toString());
 		const remainingHours = (Math.round(((hoursNeeded - totalHoursWorked) * 100)) / 100);
 		updateHoursRemaining(remainingHours);
-		// if (remainingHours < 6) {
-		// 	updateLunchBox(false);
-		// } else {
-		// 	updateLunchBox(true);
-		// }
+		if (remainingHours >= 6) {
+			updateLunchBox(true);
+			updateDisableLunchBox(true);
+		} else {
+			updateDisableLunchBox(false);
+		}
 		let lunchMinutes = 0;
 		if (lunchBox) {
 			lunchMinutes = lunchHours;
@@ -219,6 +221,7 @@ export default function App() {
 						}}
 						value={lunchBox}
 						onValueChange={(e) => (updateLunchBox(e))}
+						disabled={disableLunchBox}
 					/>
 					{lunchBox && (
 						<TextInput
