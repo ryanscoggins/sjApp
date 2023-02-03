@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
 		backgroundColor: '#d9cff2',
 		alignItems: 'center',
 		justifyContent: 'center',
-		paddingTop: 50,
+		paddingTop: 30,
 		padding: 20,
 	},
 	titleContainer: {
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
 		flex: 4,
 	},
 	titleText: {
-		paddingTop: 45,
+		paddingTop: 35,
 		fontSize: '45',
 	},
 	rowText: {
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
 		borderWidth: 1,
 		borderRadius: 6,
 		padding: 10,
-		margin: 12,
+		margin: 10,
 	},
 	row: {
 		display: 'flex',
