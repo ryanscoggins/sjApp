@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		bottom: 0,
 		right: 0,
-	}
+	},
 });
 
 export default function App() {
@@ -111,11 +111,11 @@ export default function App() {
 		updateHoursWorked(totalHoursWorked.toString());
 		const remainingHours = (Math.round(((hoursNeeded - totalHoursWorked) * 100)) / 100);
 		updateHoursRemaining(remainingHours);
-		if (remainingHours < 6) {
-			updateLunchBox(false);
-		} else {
-			updateLunchBox(true);
-		}
+		// if (remainingHours < 6) {
+		// 	updateLunchBox(false);
+		// } else {
+		// 	updateLunchBox(true);
+		// }
 		let lunchMinutes = 0;
 		if (lunchBox) {
 			lunchMinutes = lunchHours;
@@ -123,7 +123,7 @@ export default function App() {
 
 		updateHoursSum((remainingHours * 60 + parseInt(lunchMinutes)) / 60);
 		updateBanner(false);
-	}, [dailyHours, dayStart, hoursNeeded]);
+	}, [lunchBox, lunchHours, dailyHours, dayStart, hoursNeeded]);
 
 	function randomImage(arr) {
 		const randomIndex = Math.floor(Math.random() * arr.length);
@@ -218,7 +218,7 @@ export default function App() {
 							padding: 10, margin: 12, borderRadius: 6, borderWidth: 1,
 						}}
 						value={lunchBox}
-						onValueChange={updateLunchBox}
+						onValueChange={(e) => (updateLunchBox(e))}
 					/>
 					{lunchBox && (
 						<TextInput
@@ -278,8 +278,8 @@ export default function App() {
 					)}
 				</View>
 				<Text style={styles.version}>
-								{`v${Constants.manifest.version}`}
-</Text>
+					{`v${Constants.manifest.version}`}
+				</Text>
 			</View>
 		</View>
 	);
