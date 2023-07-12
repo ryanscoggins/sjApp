@@ -137,7 +137,6 @@ export default function App() {
 	function updateStart(e, date) {
 		const hours = date.getHours();
 		const minutes = date.getMinutes();
-		console.log('day start function');
 		updateDayStart(new Date(new Date().setHours(hours, minutes)));
 	}
 
@@ -282,7 +281,7 @@ export default function App() {
 					)}
 				</View>
 				<Text style={styles.version}>
-					{`v${Constants.manifest.version}`}
+					{`v${Constants.expoConfig.version}`}
 				</Text>
 			</View>
 		</View>
