@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 import React, { useState, useEffect } from 'react';
 import {
 	StyleSheet, Text, View, TextInput, Button, Image,
