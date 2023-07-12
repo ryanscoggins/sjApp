@@ -25,16 +25,16 @@ const styles = StyleSheet.create({
 	},
 	titleText: {
 		paddingTop: 35,
-		fontSize: '45',
+		fontSize: 45,
 	},
 	rowText: {
-		fontSize: '20',
+		fontSize: 20,
 	},
 	largeText: {
-		fontSize: '30',
+		fontSize: 30,
 	},
 	box: {
-		fontSize: '20',
+		fontSize: 20,
 		borderWidth: 1,
 		borderRadius: 6,
 		padding: 10,
@@ -194,7 +194,7 @@ export default function App() {
 					<TextInput
 						style={styles.box}
 						value={hoursWorked}
-						editable="false"
+						editable={false}
 					/>
 				</View>
 				<View style={styles.row}>
