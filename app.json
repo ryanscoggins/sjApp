@@ -5,10 +5,10 @@
     "owner": "ryanpersonal",
     "version": "1.0.3",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./app/images/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/sjAndRyan.png",
+      "image": "./app/images/sjAndRyan.png",
       "resizeMode": "contain",
       "backgroundColor": "#000000"
     },
@@ -25,12 +25,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./app/images/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./app/images/favicon.png"
     },
     "extra": {
       "eas": {
