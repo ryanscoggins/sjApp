@@ -100,12 +100,12 @@ export default function App() {
 	const [clockOutLate, updateClockOutLate] = useState('5:00 PM');
 
 	const images = 		[
-		require('../assets/ollie.png'),
-		require('../assets/ollie2.jpg'),
-		require('../assets/ollie3.png'),
-		require('../assets/ollie4.png'),
-		require('../assets/ollie5.png'),
-		require('../assets/ollie6.png'),
+		require('./images/ollie.png'),
+		require('./images/ollie2.jpg'),
+		require('./images/ollie3.png'),
+		require('./images/ollie4.png'),
+		require('./images/ollie5.png'),
+		require('./images/ollie6.png'),
 	];
 
 	useEffect(() => {
