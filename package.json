@@ -16,10 +16,13 @@
     "expo-constants": "~14.4.2",
     "expo-status-bar": "~1.6.0",
     "expo-updates": "~0.18.9",
-    "metro-core": "^0.79.0",
+    "metro-core": "^0.79.1",
     "moment": "^2.29.4",
     "react": "18.2.0",
-    "react-native": "*"
+    "react-native": "*",
+    "react-native-web": "~0.19.6",
+    "react-dom": "18.2.0",
+    "@expo/webpack-config": "^19.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
