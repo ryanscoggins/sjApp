@@ -98,6 +98,7 @@ export default function App() {
 	const [showBanner, updateBanner] = useState(false);
 	const [clockOutEarly, updateClockOutEarly] = useState('5:00 PM');
 	const [clockOutLate, updateClockOutLate] = useState('5:00 PM');
+	const [startRounded, updateStartRounded] = useState('8:00 AM');
 
 	const images = 		[
 		require('./images/ollie.png'),
@@ -161,6 +162,13 @@ export default function App() {
 			lunchMinutes = lunchHours;
 		} else;
 
+		const startHourRound = parseFloat(dayStart.getHours());
+		const startMinRound = dayStart.getMinutes();
+		const totalMinRound = (startHourRound * 60) + startMinRound;
+		const startRound = (new Date(new Date().setHours(0, totalMinRound)));
+		updateStartRounded(moment(startRound).format('h:mm A'));
+		console.log(startHourRound);
+		console.log(startMinRound);
 		const hours = parseFloat(dayStart.getHours()) + parseFloat(hoursRemaining);
 		const totalMinutes = (hours * 60) + dayStart.getMinutes() + parseInt(lunchMinutes, 10);
 		const earlyFinish = (new Date(new Date().setHours(0, totalMinutes - 7)));
@@ -254,6 +262,12 @@ export default function App() {
 				<View style={styles.row}>
 					{showBanner && (
 						<View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+							<Text style={styles.rowText}>
+								Actual start:
+								{' '}
+								{startRounded}
+								{' '}
+							</Text>
 							<Text style={styles.rowText}>
 								You will need to work:
 								{' '}
