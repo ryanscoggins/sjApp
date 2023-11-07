@@ -109,6 +109,7 @@ export default function App() {
 	];
 
 	useEffect(() => {
+		// eslint-disable-next-line max-len
 		const totalHoursWorked = dailyHours.reduce((accumulator, object) => accumulator + Number(object.hours), 0);
 		updateHoursWorked(totalHoursWorked.toString());
 		const remainingHours = (Math.round(((hoursNeeded - totalHoursWorked) * 100)) / 100);
@@ -246,6 +247,7 @@ export default function App() {
 					/>
 				</View>
 				<Button
+					// eslint-disable-next-line react/jsx-no-bind
 					onPress={calculate}
 					title="Calculate"
 				/>
