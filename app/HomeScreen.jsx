@@ -124,7 +124,7 @@ export default function App() {
 			lunchMinutes = lunchHours;
 		} else;
 
-		updateHoursSum((remainingHours * 60 + parseInt(lunchMinutes)) / 60);
+		updateHoursSum((remainingHours * 60 + parseInt(lunchMinutes, 10)) / 60);
 		updateBanner(false);
 	}, [lunchBox, lunchHours, dailyHours, dayStart, hoursNeeded]);
 
@@ -161,7 +161,7 @@ export default function App() {
 		} else;
 
 		const hours = parseFloat(dayStart.getHours()) + parseFloat(hoursRemaining);
-		const totalMinutes = (hours * 60) + dayStart.getMinutes() + parseInt(lunchMinutes);
+		const totalMinutes = (hours * 60) + dayStart.getMinutes() + parseInt(lunchMinutes, 10);
 		const earlyFinish = (new Date(new Date().setHours(0, totalMinutes - 7)));
 		const lateFinish = (new Date(new Date().setHours(0, totalMinutes + 7)));
 
