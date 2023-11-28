@@ -1,3 +1,4 @@
+/* eslint-disable no-bitwise */
 /* eslint-disable global-require */
 import React, { useState, useEffect } from 'react';
 import {
@@ -7,6 +8,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import Checkbox from 'expo-checkbox';
 import moment from 'moment';
 import Constants from 'expo-constants';
+import { counterEvent } from 'react-native/Libraries/Performance/Systrace';
 
 const styles = StyleSheet.create({
 	container: {
@@ -94,11 +96,11 @@ export default function App() {
 	const [lunchHours, updateLunchHours] = useState('30');
 	const [lunchBox, updateLunchBox] = useState(true);
 	const [disableLunchBox, updateDisableLunchBox] = useState(false);
-	const [dayStart, updateDayStart] = useState(new Date(new Date().setHours(8, 0, 0, 0)));
+	const [dayStart, updateDayStart] = useState(new Date(new Date().setHours(7, 58, 0, 0)));
 	const [showBanner, updateBanner] = useState(false);
 	const [clockOutEarly, updateClockOutEarly] = useState('5:00 PM');
 	const [clockOutLate, updateClockOutLate] = useState('5:00 PM');
-	const [startRounded, updateStartRounded] = useState('8:00 AM');
+	const [startRounded, updateStartRounded] = useState('7:59 AM');
 
 	const images = 		[
 		require('./images/ollie.png'),
@@ -162,13 +164,9 @@ export default function App() {
 			lunchMinutes = lunchHours;
 		} else;
 
-		const startHourRound = parseFloat(dayStart.getHours());
-		const startMinRound = dayStart.getMinutes();
-		const totalMinRound = (startHourRound * 60) + startMinRound;
-		const startRound = (new Date(new Date().setHours(0, totalMinRound)));
+		const coeff = 1000 * 60 * 15;
+		const startRound = new Date(Math.round(dayStart.getTime() / coeff) * coeff);
 		updateStartRounded(moment(startRound).format('h:mm A'));
-		console.log(startHourRound);
-		console.log(startMinRound);
 		const hours = parseFloat(dayStart.getHours()) + parseFloat(hoursRemaining);
 		const totalMinutes = (hours * 60) + dayStart.getMinutes() + parseInt(lunchMinutes, 10);
 		const earlyFinish = (new Date(new Date().setHours(0, totalMinutes - 7)));
@@ -263,7 +261,7 @@ export default function App() {
 					{showBanner && (
 						<View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
 							<Text style={styles.rowText}>
-								Actual start:
+								Clock in:
 								{' '}
 								{startRounded}
 								{' '}
