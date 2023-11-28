@@ -3,7 +3,7 @@
     "name": "SJ App",
     "slug": "sj-app",
     "owner": "ryanpersonal",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "orientation": "portrait",
     "icon": "./app/images/icon.png",
     "userInterfaceStyle": "light",
