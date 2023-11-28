@@ -164,11 +164,13 @@ export default function App() {
 			lunchMinutes = lunchHours;
 		} else;
 
+		// round start time
 		const coeff = 1000 * 60 * 15;
 		const startRound = new Date(Math.round(dayStart.getTime() / coeff) * coeff);
 		updateStartRounded(moment(startRound).format('h:mm A'));
-		const hours = parseFloat(dayStart.getHours()) + parseFloat(hoursRemaining);
-		const totalMinutes = (hours * 60) + dayStart.getMinutes() + parseInt(lunchMinutes, 10);
+
+		const hours = parseFloat(startRound.getHours()) + parseFloat(hoursRemaining);
+		const totalMinutes = (hours * 60) + startRound.getMinutes() + parseInt(lunchMinutes, 10);
 		const earlyFinish = (new Date(new Date().setHours(0, totalMinutes - 7)));
 		const lateFinish = (new Date(new Date().setHours(0, totalMinutes + 7)));
 
@@ -240,7 +242,7 @@ export default function App() {
 				</View>
 				<View style={styles.row}>
 					<Text style={styles.rowText}>
-						Start time:
+						Clock in:
 					</Text>
 					<DateTimePicker
 						mode="time"
@@ -261,7 +263,7 @@ export default function App() {
 					{showBanner && (
 						<View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
 							<Text style={styles.rowText}>
-								Clock in:
+								Start time:
 								{' '}
 								{startRounded}
 								{' '}
