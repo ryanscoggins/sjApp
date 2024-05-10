@@ -96,11 +96,11 @@ export default function App() {
 	const [lunchHours, updateLunchHours] = useState('30');
 	const [lunchBox, updateLunchBox] = useState(true);
 	const [disableLunchBox, updateDisableLunchBox] = useState(false);
-	const [dayStart, updateDayStart] = useState(new Date(new Date().setHours(7, 58, 0, 0)));
+	const [dayStart, updateDayStart] = useState(new Date(new Date().setHours(8, 0, 0, 0)));
 	const [showBanner, updateBanner] = useState(false);
 	const [clockOutEarly, updateClockOutEarly] = useState('5:00 PM');
 	const [clockOutLate, updateClockOutLate] = useState('5:00 PM');
-	const [startRounded, updateStartRounded] = useState('7:59 AM');
+	const [startRounded, updateStartRounded] = useState('8:00 AM');
 
 	const images = 		[
 		require('./images/ollie.png'),
