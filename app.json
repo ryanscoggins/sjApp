@@ -3,7 +3,7 @@
     "name": "SJ App",
     "slug": "sj-app",
     "owner": "ryanpersonal",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "orientation": "portrait",
     "icon": "./app/images/icon.png",
     "userInterfaceStyle": "light",
@@ -27,7 +27,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./app/images/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.ryanpersonal.sjapp"
     },
     "web": {
       "favicon": "./app/images/favicon.png"
