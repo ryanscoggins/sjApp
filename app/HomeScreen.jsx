@@ -128,7 +128,7 @@ export default function App() {
 			lunchMinutes = lunchHours;
 		} else;
 
-		updateHoursSum((remainingHours * 60 + parseInt(lunchMinutes, 10)) / 60);
+		updateHoursSum(((remainingHours * 60 + parseInt(lunchMinutes, 10)) / 60).toFixed(1));
 		updateBanner(false);
 	}, [lunchBox, lunchHours, dailyHours, dayStart, hoursNeeded]);
 
@@ -160,17 +160,17 @@ export default function App() {
 
 	function calculate() {
 		let lunchMinutes = 0;
-		if (lunchBox) {
-			lunchMinutes = lunchHours;
-		} else;
+		if (lunchBox) {lunchMinutes = lunchHours};
 
 		// round start time
 		const coeff = 1000 * 60 * 15;
 		const startRound = new Date(Math.round(dayStart.getTime() / coeff) * coeff);
 		updateStartRounded(moment(startRound).format('h:mm A'));
+		// function to round lunch minutes to the nearest 15 minutes
+		const lunchRounded = Math.ceil(parseInt(lunchMinutes, 10) / 15) * 15;
 
 		const hours = parseFloat(startRound.getHours()) + parseFloat(hoursRemaining);
-		const totalMinutes = (hours * 60) + startRound.getMinutes() + parseInt(lunchMinutes, 10);
+		const totalMinutes = (hours * 60) + startRound.getMinutes() + lunchRounded;
 		const earlyFinish = (new Date(new Date().setHours(0, totalMinutes - 7)));
 		const lateFinish = (new Date(new Date().setHours(0, totalMinutes + 7)));
 
